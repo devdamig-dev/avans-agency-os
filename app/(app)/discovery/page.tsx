@@ -1,0 +1,1 @@
+import {ModulePlaceholder} from "@/components/module-placeholder";export default function Page(){return <ModulePlaceholder eyebrow="Diagnóstico" title="Discovery" description="Convertí conversaciones en contexto accionable." items={["Discovery · Nativa Wellness","Relevamiento · Distrito Sur","Brief interno · Moira Home"]}/>}

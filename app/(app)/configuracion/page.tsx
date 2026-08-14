@@ -1,0 +1,1 @@
+import {ModulePlaceholder} from "@/components/module-placeholder";export default function Page(){return <ModulePlaceholder eyebrow="Sistema" title="Configuración" description="Organización, equipo e integraciones futuras." items={["Perfil de Avans Agency","Miembros y roles","Webhooks · próximamente"]}/>}

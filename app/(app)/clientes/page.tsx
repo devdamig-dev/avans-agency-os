@@ -1,0 +1,2 @@
+import { PageHeading } from "@/components/page-heading";import {DataTable} from "@/components/data-table";import {clients} from "@/lib/demo-data";
+export default function Clients(){return <><PageHeading eyebrow="Cuentas" title="Clientes" description="Cada relación, proyecto y contexto de marca en un solo lugar." action="Nuevo cliente"/><DataTable columns={["Cliente","Industria","Operación","Estado"]} rows={clients.map(x=>[x.name,x.industry,x.projects,x.status])}/></>}

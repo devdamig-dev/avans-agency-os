@@ -1,0 +1,1 @@
+import {ModulePlaceholder} from "@/components/module-placeholder";export default function Page(){return <ModulePlaceholder eyebrow="Alta de cliente" title="Onboarding" description="Accesos, documentos y kickoff sin olvidos." items={["Nexo Industrial · 7/11","Marea Café · 10/11","Fundación Horizonte · 11/11"]}/>}
