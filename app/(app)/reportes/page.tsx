@@ -1,0 +1,1 @@
+import {ModulePlaceholder} from "@/components/module-placeholder";export default function Page(){return <ModulePlaceholder eyebrow="Resultados" title="Reportes" description="Datos que se convierten en decisiones entendibles." items={["Performance · Julio","Social · Q2","Campaña · Lanzamiento"]}/>}

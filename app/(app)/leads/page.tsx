@@ -1,0 +1,2 @@
+import { PageHeading } from "@/components/page-heading";import {DataTable} from "@/components/data-table";import {leads} from "@/lib/demo-data";
+export default function Leads(){return <><PageHeading eyebrow="Comercial" title="Leads" description="Centralizá oportunidades y mantené visible cada próximo paso." action="Nuevo lead"/><DataTable columns={["Contacto","Empresa","Origen","Interés","Prioridad","Estado"]} rows={leads.map(x=>[x.name,x.company,x.origin,x.service,x.priority,x.status])}/></>}

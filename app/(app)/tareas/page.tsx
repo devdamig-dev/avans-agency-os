@@ -1,0 +1,2 @@
+import { PageHeading } from "@/components/page-heading";import {DataTable} from "@/components/data-table";import {tasks} from "@/lib/demo-data";
+export default function Tasks(){return <><PageHeading eyebrow="Gestión" title="Tareas" description="Responsables, prioridades y bloqueos sin zonas grises." action="Nueva tarea"/><DataTable columns={["Tarea","Asociada a","Vence","Prioridad","Estado"]} rows={tasks.map(x=>[x.title,x.link,x.due,x.priority,x.status])}/></>}

@@ -1,0 +1,1 @@
+import {ModulePlaceholder} from "@/components/module-placeholder";export default function Page(){return <ModulePlaceholder eyebrow="Comercial" title="Propuestas" description="Alcances claros, editables y siempre aprobados por el equipo." items={["Plan integral · Nativa","Estrategia de marca · Distrito Sur","Contenido mensual · Moira"]}/>}

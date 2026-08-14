@@ -63,6 +63,38 @@ cp .env.example .env.local
 
 Nunca commitear `.env.local`, service role keys ni claves de OpenAI.
 
+## Ejecutar el MVP
+
+```bash
+npm install
+cp .env.example .env.local
+npm run dev
+```
+
+Completá `NEXT_PUBLIC_SUPABASE_ANON_KEY` en `.env.local` para habilitar el login y
+las mutaciones contra Supabase. Sin esa variable, el login permite entrar en modo
+demo para recorrer la interfaz con datos ilustrativos.
+
+La primera entrega incluye App Router, UI Avans responsive, Supabase Auth, dashboard,
+navegación de todos los módulos prioritarios, mutaciones CRUD server-side para leads,
+clientes y tareas, bandeja de aprobaciones y catálogo de agentes. Las integraciones
+n8n sólo están representadas por variables de entorno: no se ejecutan webhooks.
+
+### Checks
+
+```bash
+npm run typecheck
+npm run build
+```
+
+## Próximos pasos
+
+- Conectar formularios completos y estados optimistas a las mutaciones CRUD.
+- Implementar las primeras acciones OpenAI con registro obligatorio en `agent_runs`.
+- Agregar carga de documentos en Supabase Storage.
+- Validar la migración y las políticas RLS en un entorno de staging.
+- Diseñar contratos versionados para webhooks antes de integrar n8n.
+
 ## Principios de producto
 
 1. No enviar mensajes automáticamente al cliente.

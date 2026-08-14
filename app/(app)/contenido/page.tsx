@@ -1,0 +1,1 @@
+import {ModulePlaceholder} from "@/components/module-placeholder";export default function Page(){return <ModulePlaceholder eyebrow="Producción" title="Contenido" description="Ideas, copies y piezas con contexto de marca y aprobación." items={["Carrusel · Temporada","Reel · Caso de éxito","Email · Lanzamiento"]}/>}
