@@ -1,42 +1,42 @@
 export const sections = [
-  { slug: "dashboard", label: "Dashboard", group: "General" },
-  { slug: "leads", label: "Leads", group: "Comercial" },
-  { slug: "discovery", label: "Discovery", group: "Comercial" },
-  { slug: "propuestas", label: "Propuestas", group: "Comercial" },
-  { slug: "clientes", label: "Clientes", group: "Operación" },
-  { slug: "proyectos", label: "Proyectos", group: "Operación" },
-  { slug: "onboarding", label: "Onboarding", group: "Operación" },
-  { slug: "contenido", label: "Contenido", group: "Entrega" },
-  { slug: "reportes", label: "Reportes", group: "Entrega" },
-  { slug: "aprobaciones", label: "Aprobaciones", group: "Entrega" },
-  { slug: "agentes", label: "Agentes IA", group: "Sistema" },
-  { slug: "automatizaciones", label: "Automatizaciones", group: "Sistema" },
-  { slug: "configuracion", label: "Configuración", group: "Sistema" },
+  { slug: "dashboard", label: "Centro operativo", group: "General" },
+  { slug: "leads", label: "Leads", group: "Comercial" }, { slug: "discovery", label: "Discovery", group: "Comercial" },
+  { slug: "propuestas", label: "Propuestas", group: "Comercial" }, { slug: "clientes", label: "Clientes", group: "Operación" },
+  { slug: "proyectos", label: "Proyectos", group: "Operación" }, { slug: "onboarding", label: "Onboarding", group: "Operación" },
+  { slug: "contenido", label: "Contenido", group: "Entrega" }, { slug: "reportes", label: "Reportes", group: "Entrega" },
+  { slug: "aprobaciones", label: "Aprobaciones", group: "Control" }, { slug: "agentes", label: "Agentes IA", group: "Sistema" },
+  { slug: "automatizaciones", label: "Automatizaciones", group: "Sistema" }, { slug: "configuracion", label: "Configuración", group: "Sistema" },
 ] as const;
 
 export const leads = [
-  { name: "Clínica Norte", company: "Salud", source: "WhatsApp", score: 92, stage: "Calificado", owner: "Mica", budget: "$1.8M" },
-  { name: "Casa Nativa", company: "Real Estate", source: "Instagram", score: 84, stage: "Discovery", owner: "Juan", budget: "$980K" },
-  { name: "Marea Studio", company: "Ecommerce", source: "Formulario", score: 76, stage: "Nuevo", owner: "Sofi", budget: "$720K" },
-  { name: "Nexo Legal", company: "Servicios", source: "Referido", score: 68, stage: "Propuesta", owner: "Mica", budget: "$1.2M" },
+  { name:"Milen Muebles", contact:"Carolina Méndez", source:"Meta Ads", service:"Pauta + CRM", score:94, stage:"Calificado", owner:"Mica", budget:"USD 2.400", missing:"Decisor", task:"Llamar hoy · 16:30" },
+  { name:"Line Up", contact:"Tomás Ruiz", source:"WhatsApp", service:"Automatización", score:88, stage:"Discovery", owner:"Juan", budget:"USD 1.800", missing:"Volumen", task:"Discovery · Mañana" },
+  { name:"Marzo Pumps", contact:"Laura Viera", source:"Formulario web", service:"Desarrollo web", score:82, stage:"Nuevo", owner:"Sofi", budget:"A validar", missing:"Budget", task:"Calificar · Hoy" },
+  { name:"Lonkar Accesorios", contact:"Martín Costa", source:"Instagram", service:"Contenido", score:76, stage:"Seguimiento", owner:"Mica", budget:"USD 1.200", missing:"Timing", task:"Enviar casos · Vie" },
+  { name:"Salutaris", contact:"Lucía Soto", source:"Referido", service:"Branding", score:71, stage:"Propuesta", owner:"Juan", budget:"USD 3.100", missing:"—", task:"Follow-up · Lun" },
 ];
 
+export const moduleData: Record<string, { rows: string[][]; columns: string[]; detail: { title:string; eyebrow:string; facts:string[][]; sections:{title:string; body:string}[]; action:string } }> = {
+  discovery:{columns:["Discovery","Lead / cliente","Progreso","Owner","Pendientes"],rows:[["Line Up · Expansión","Line Up","8/10 respuestas","Juan","2 preguntas"],["Marzo Pumps · Web","Marzo Pumps","6/10 respuestas","Sofi","4 preguntas"],["Salutaris · Rebrand","Salutaris","Completo","Mica","Sin pendientes"]],detail:{title:"Line Up · Expansión comercial",eyebrow:"DIAGNÓSTICO IA · V2",facts:[["Relación","Lead: Line Up · Cliente potencial"],["Objetivo","Reducir el tiempo de respuesta comercial"],["Dolor central","Consultas dispersas entre WhatsApp e Instagram"],["Preguntas pendientes","¿Quién valida el pipeline? · ¿Qué CRM usan?"]],sections:[{title:"Oportunidades detectadas",body:"Centralizar captación, priorizar por intención y automatizar el primer seguimiento."},{title:"Servicios recomendados",body:"Automation Sprint · Implementación CRM · Dashboard comercial"}],action:"Generar propuesta"}},
+  propuestas:{columns:["Propuesta","Versión","Aprobación interna","Inversión","Actualización"],rows:[["Automation Sprint · Line Up","Borrador IA v3","Revisión Dirección","USD 8.400","Hace 18 min"],["Web Growth · Marzo Pumps","v2","Aprobada","USD 12.600","Ayer"],["Brand System · Salutaris","v1","Ajustes solicitados","A validar","12 ago"]],detail:{title:"Automation Sprint",eyebrow:"BORRADOR IA · V3",facts:[["Diagnóstico","Demoras y pérdida de trazabilidad comercial"],["Solución","CRM, automatización y tablero de gestión"],["Etapas","Discovery técnico · Build · QA · Adopción"],["Entregables","Pipeline, 4 workflows, dashboard y capacitación"],["Exclusiones","Licencias y pauta publicitaria"],["Inversión estimada","USD 8.400 · requiere validación humana"]],sections:[{title:"Alcance",body:"6 semanas de implementación con dos instancias semanales y documentación operativa."},{title:"Próximos pasos",body:"Validación de alcance → precio final → envío al cliente."}],action:"Validar internamente"}},
+  clientes:{columns:["Cliente","Servicios","Equipo","Health","Tareas abiertas"],rows:[["Milen Muebles","Pauta · Contenido · CRM","Mica + 3","Saludable","4"],["Line Up","Automation · Web","Juan + 2","Atención","6"],["Marzo Pumps","Web · SEO","Sofi + 2","Saludable","3"],["Lonkar Accesorios","Contenido · Pauta","Mica + 4","Atención","8"],["Salutaris","Branding · Web","Juan + 3","Saludable","2"]],detail:{title:"Milen Muebles",eyebrow:"CLIENTE ACTIVO · DESDE 2024",facts:[["Equipo asignado","Mica (PM) · Vale (Ads) · Cami (Content)"],["Accesos pendientes","Google Analytics · Catálogo Meta"],["Brief de marca","Completo · actualizado 2 ago"],["Documentos","Contrato · Brandbook · Kickoff · 12 archivos"],["Tareas abiertas","4 · una bloqueada"],["Último reporte","Julio · aprobado por cliente"]],sections:[{title:"Servicios contratados",body:"Performance always-on · Content Engine · Optimización CRM"},{title:"Historial reciente",body:"Reporte aprobado · 4 piezas publicadas · acceso solicitado a Analytics"}],action:"Abrir workspace"}},
+  proyectos:{columns:["Proyecto","Etapa","Responsable","Deadline","Riesgo IA"],rows:[["Milen · Growth Q3","Optimización","Mica","22 ago","Bajo"],["Line Up · CRM","Implementación","Juan","29 ago","Medio"],["Marzo · Nueva web","Diseño UI","Sofi","12 sep","Bajo"],["Lonkar · Campaña SS26","Producción","Cami","19 ago","Alto"]],detail:{title:"Line Up · Implementación CRM",eyebrow:"PROYECTO · 64% COMPLETO",facts:[["Etapa actual","Integraciones y normalización"],["Responsables","Juan (PM) · Fede (Dev)"],["Deadline","29 agosto · 11 días"],["Bloqueo","Falta acceso de administrador a Meta"],["Tareas","12 completas · 4 abiertas · 1 bloqueada"],["Derivaciones","PM → Desarrollo → Trafficker"]],sections:[{title:"Riesgo detectado por IA",body:"El acceso pendiente puede desplazar QA tres días. Sugerencia: escalar hoy al sponsor."},{title:"Próximo hito",body:"Pruebas end-to-end con el equipo comercial · 23 agosto."}],action:"Ver plan de trabajo"}},
+  onboarding:{columns:["Cliente","Progreso","Accesos","Responsable","Kickoff"],rows:[["Salutaris","72%","3 pendientes","Juan","20 ago"],["Marzo Pumps","48%","6 pendientes","Sofi","A coordinar"],["Line Up","91%","1 pendiente","Mica","Completado"]],detail:{title:"Salutaris · Onboarding",eyebrow:"CHECKLIST · 8/11 COMPLETOS",facts:[["Contrato","Firmado"],["Datos fiscales","Completos"],["Accesos","Meta, GA4 y hosting pendientes"],["Brief de marca","En revisión"],["Equipo","Juan · Cami · Fede"]],sections:[{title:"Siguiente acción",body:"Consolidar accesos antes del kickoff del 20 de agosto."}],action:"Solicitar accesos"}},
+  contenido:{columns:["Pieza","Marca / pilar","Canal","Estado","Entrega"],rows:[["Carrusel · Living modular","Milen · Inspiración","Instagram","Revisión de tono","Hoy"],["Reel · Ventas sin fricción","Line Up · Educación","Instagram","Diseño","19 ago"],["Caso · Bomba industrial","Marzo · Producto","LinkedIn","Aprobado","21 ago"],["UGC · Nuevos ingresos","Lonkar · Tendencias","TikTok","Copy IA","22 ago"]],detail:{title:"Carrusel · Living modular",eyebrow:"CONTENT ENGINE · BORRADOR V4",facts:[["Marca","Milen Muebles · ficha v3"],["Pilar","Inspiración / espacios reales"],["Formato","Carrusel · 6 placas · Instagram"],["Tono","Cálido, claro, experto sin tecnicismos"],["Aprobación","Pendiente de Content Lead"],["Derivación","Copy → Diseño → Programación"]],sections:[{title:"Copy principal",body:"Tu living no necesita más metros: necesita decisiones inteligentes. Tres formas de ganar espacio sin resignar identidad."},{title:"Prompt visual",body:"Interior argentino contemporáneo, luz cálida lateral, mueble modular como protagonista, paleta neutra, encuadre editorial."},{title:"Prompt de video",body:"Recorrido suave de 8 segundos, reveal del módulo extensible, detalles de textura, cierre con composición completa."},{title:"Aprendizaje de marca",body:"Los ejemplos aprobados usan beneficios concretos. Evitar superlativos y llamados de venta agresivos."}],action:"Enviar a diseño"}},
+  reportes:{columns:["Reporte","Fuentes","Período","Revisión","Estado"],rows:[["Milen · Performance","Meta Ads · GA4","Julio","Vale / Mica","Revisión PM"],["Line Up · Comercial","CRM · Analytics","Julio","Juan","Borrador IA"],["Marzo · SEO","Search Console · GA4","Julio","Sofi","Aprobado"]],detail:{title:"Milen · Reporte de julio",eyebrow:"REPORT ANALYST · VERSIÓN CLIENTE",facts:[["Fuentes","Meta Ads · Google Ads · Analytics"],["Carga manual","ROAS offline y ventas del local · completa"],["Capturas interpretadas","4 de Ads Manager"],["Revisión","Trafficker aprobó · PM pendiente"],["Resultado","+18% consultas · -11% costo por lead"]],sections:[{title:"Resumen ejecutivo",body:"La inversión generó más conversaciones calificadas con menor costo. El catálogo fue el principal impulsor."},{title:"Insights",body:"La audiencia de remarketing concentra 38% de las conversiones. Dos creatividades muestran fatiga."},{title:"Próximos pasos",body:"Renovar piezas de catálogo, ampliar test de audiencias y conectar ventas offline."}],action:"Aprobar versión cliente"}},
+};
+
 export const agents = [
-  ["Lead Classifier", "Comercial", "Clasifica intención, urgencia y fit."],
-  ["Lead Scoring", "Comercial", "Prioriza oportunidades con señales verificables."],
-  ["Discovery Brief", "Discovery", "Ordena respuestas y detecta datos faltantes."],
-  ["Proposal Writer", "Propuestas", "Prepara alcance, etapas y exclusiones."],
-  ["Onboarding Assistant", "Clientes", "Controla documentos, accesos y kickoff."],
-  ["Project Copilot", "Proyectos", "Resume bloqueos y recomienda próximos pasos."],
-  ["Content Strategist", "Contenido", "Diseña pilares e ideas para cada marca."],
-  ["Copywriter", "Contenido", "Redacta variantes según tono y canal."],
-  ["Creative Prompter", "Contenido", "Crea prompts visuales listos para revisar."],
-  ["Report Analyst", "Reportes", "Interpreta métricas y anomalías."],
-  ["Client Success", "Clientes", "Detecta riesgos y oportunidades de expansión."],
-] as const;
+  {name:"Lead Intelligence",area:"Comercial",goal:"Priorizar oportunidades y completar contexto.",data:"Origen, mensajes, CRM y formularios",tools:"Scoring · enriquecimiento · CRM",suggests:"Owner, prioridad y siguiente tarea",limits:"No descarta ni contacta leads",approval:"Mensajes y cambios de etapa",runs:148,rate:"94%",alert:"Sin alertas"},
+  {name:"Discovery Strategist",area:"Discovery",goal:"Transformar respuestas en diagnóstico.",data:"Brief, llamadas y notas",tools:"Resumen · gaps · recomendador",suggests:"Oportunidades y servicios",limits:"No define alcance final",approval:"Diagnóstico y propuesta",runs:63,rate:"91%",alert:"2 briefs incompletos"},
+  {name:"Content Engine",area:"Contenido",goal:"Producir ideas alineadas a cada marca.",data:"Brandbook y feedback histórico",tools:"Copy · prompts · variantes",suggests:"Calendario y derivaciones",limits:"No publica contenido",approval:"Todo output externo",runs:294,rate:"88%",alert:"3 revisiones de tono"},
+  {name:"Report Analyst",area:"Reportes",goal:"Convertir métricas en decisiones claras.",data:"Ads, Analytics y carga manual",tools:"OCR · anomalías · redacción",suggests:"Insights y próximos pasos",limits:"No modifica campañas",approval:"Reporte para cliente",runs:87,rate:"96%",alert:"1 fuente desactualizada"},
+];
 
 export const workflows = [
-  { name: "Captura y calificación", trigger: "Nuevo lead", steps: ["Normalizar datos", "Lead Classifier", "Asignar owner", "Revisión humana"], runs: 148 },
-  { name: "Discovery a propuesta", trigger: "Discovery completo", steps: ["Crear brief", "Proposal Writer", "Validar alcance", "Aprobación CEO"], runs: 32 },
-  { name: "Reporte mensual", trigger: "Métricas cargadas", steps: ["Analizar KPIs", "Redactar insights", "Revisión PM", "Enviar"], runs: 54 },
+  {name:"Captación → Discovery",trigger:"Lead calificado",steps:[["Entrada","Formulario / WhatsApp"],["IA","Clasificar y completar"],["Sistema","Crear oportunidad"],["Humano","Validar fit"],["Salida","Discovery agendado"]],runs:148},
+  {name:"Discovery → Propuesta",trigger:"Brief completo",steps:[["Entrada","Respuestas"],["IA","Diagnóstico y alcance"],["Sistema","Versionar borrador"],["Humano","Validar precio"],["Salida","Propuesta lista"]],runs:42},
+  {name:"Cliente ganado → Onboarding",trigger:"Propuesta aceptada",steps:[["Entrada","Deal ganado"],["IA","Preparar checklist"],["Sistema","Crear proyecto"],["Humano","Asignar equipo"],["Salida","Kickoff"]],runs:31},
+  {name:"Brief → Calendario",trigger:"Marca validada",steps:[["Entrada","Brand brief"],["IA","Pilares e ideas"],["Sistema","Crear piezas"],["Humano","Curar calendario"],["Salida","Diseño"]],runs:76},
+  {name:"Métricas → Reporte",trigger:"Cierre mensual",steps:[["Entrada","Ads + Analytics"],["IA","Interpretar datos"],["Sistema","Armar reporte"],["Humano","Revisión PM"],["Salida","Versión cliente"]],runs:54},
 ];
