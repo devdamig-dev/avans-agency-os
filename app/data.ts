@@ -27,10 +27,14 @@ export const moduleData: Record<string, { rows: string[][]; columns: string[]; d
 };
 
 export const agents = [
-  {name:"Lead Intelligence",area:"Comercial",goal:"Priorizar oportunidades y completar contexto.",data:"Origen, mensajes, CRM y formularios",tools:"Scoring · enriquecimiento · CRM",suggests:"Owner, prioridad y siguiente tarea",limits:"No descarta ni contacta leads",approval:"Mensajes y cambios de etapa",runs:148,rate:"94%",alert:"Sin alertas"},
-  {name:"Discovery Strategist",area:"Discovery",goal:"Transformar respuestas en diagnóstico.",data:"Brief, llamadas y notas",tools:"Resumen · gaps · recomendador",suggests:"Oportunidades y servicios",limits:"No define alcance final",approval:"Diagnóstico y propuesta",runs:63,rate:"91%",alert:"2 briefs incompletos"},
-  {name:"Content Engine",area:"Contenido",goal:"Producir ideas alineadas a cada marca.",data:"Brandbook y feedback histórico",tools:"Copy · prompts · variantes",suggests:"Calendario y derivaciones",limits:"No publica contenido",approval:"Todo output externo",runs:294,rate:"88%",alert:"3 revisiones de tono"},
-  {name:"Report Analyst",area:"Reportes",goal:"Convertir métricas en decisiones claras.",data:"Ads, Analytics y carga manual",tools:"OCR · anomalías · redacción",suggests:"Insights y próximos pasos",limits:"No modifica campañas",approval:"Reporte para cliente",runs:87,rate:"96%",alert:"1 fuente desactualizada"},
+  ...[
+    ["Lead Classifier Agent","Comercial","Priorizar oportunidades y completar contexto."], ["Sales Follow-up Agent","Comercial","Sugerir seguimientos oportunos y relevantes."],
+    ["Discovery Brief Agent","Discovery","Transformar respuestas en diagnóstico."], ["Proposal Draft Agent","Propuestas","Estructurar propuestas sin cerrar precio."],
+    ["Onboarding Assistant Agent","Onboarding","Preparar checklist, accesos y responsables."], ["Content Strategist Agent","Contenido","Proponer pilares e ideas alineadas a marca."],
+    ["Copywriter Agent","Contenido","Crear variantes de copy como borrador."], ["Visual Prompt Agent","Contenido","Traducir ideas en prompts visuales y video."],
+    ["Report Analyst Agent","Reportes","Convertir métricas en decisiones claras."], ["PM Assistant Agent","Proyectos","Detectar bloqueos, riesgos y próximos pasos."],
+    ["QA Deliverables Agent","Control","Revisar completitud antes de una entrega."],
+  ].map((a,i)=>({name:a[0],area:a[1],goal:a[2],data:"CRM, brief, historial y feedback aprobado",tools:"Análisis · generación · trazabilidad",suggests:"Siguiente acción y derivación",limits:"No publica, cotiza ni decide sin una persona",approval:"Todo output externo o sensible",runs:42+i*17,rate:`${88+i%9}%`,alert:i%4===0?"1 revisión pendiente":"Sin alertas"})),
 ];
 
 export const workflows = [
@@ -39,4 +43,5 @@ export const workflows = [
   {name:"Cliente ganado → Onboarding",trigger:"Propuesta aceptada",steps:[["Entrada","Deal ganado"],["IA","Preparar checklist"],["Sistema","Crear proyecto"],["Humano","Asignar equipo"],["Salida","Kickoff"]],runs:31},
   {name:"Brief → Calendario",trigger:"Marca validada",steps:[["Entrada","Brand brief"],["IA","Pilares e ideas"],["Sistema","Crear piezas"],["Humano","Curar calendario"],["Salida","Diseño"]],runs:76},
   {name:"Métricas → Reporte",trigger:"Cierre mensual",steps:[["Entrada","Ads + Analytics"],["IA","Interpretar datos"],["Sistema","Armar reporte"],["Humano","Revisión PM"],["Salida","Versión cliente"]],runs:54},
+  {name:"Aprobación interna → Derivación",trigger:"Output aprobado",steps:[["Entrada","Aprobación"],["IA","Identificar destino"],["Sistema","Actualizar estado"],["Humano","Confirmar owner"],["Salida","Derivación"]],runs:96},
 ];
