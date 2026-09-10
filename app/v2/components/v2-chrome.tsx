@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { AvansLogo } from "../../components/avans-logo";
 import { v2NavGroups } from "../navigation";
+import { ThemeToggle } from "./theme-toggle";
 import styles from "../v2.module.css";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -57,8 +58,8 @@ export function V2Chrome({
   children: React.ReactNode;
 }) {
   return (
-    <main className={styles.shell}>
-      <aside className={styles.sidebar}>
+    <main className={`${styles.shell} avans-v2-shell`}>
+      <aside className={`${styles.sidebar} avans-v2-sidebar`}>
         <div className={styles.brand}>
           <Link href="/v2" aria-label="Ir al Command Center">
             <AvansLogo variant="compact" />
@@ -104,8 +105,8 @@ export function V2Chrome({
         </div>
       </aside>
 
-      <section className={styles.workspaceMain}>
-        <header className={styles.topbar}>
+      <section className={`${styles.workspaceMain} avans-v2-main`}>
+        <header className={`${styles.topbar} avans-v2-topbar`}>
           <div>
             <span>Avans /</span>
             <strong>{title}</strong>
@@ -113,6 +114,7 @@ export function V2Chrome({
           <div className={styles.topStatus}>
             <span className={styles.liveDot} />
             Intelligence Loop activo
+            <ThemeToggle />
           </div>
         </header>
         {children}
