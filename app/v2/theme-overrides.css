@@ -1,0 +1,56 @@
+html[data-avans-theme="dark"] body{background:#121018;color:#f7f2f8}
+
+.avans-theme-toggle{border:1px solid #e8e0eb;background:#fff;color:#4f4554;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;font:inherit;font-size:11px;font-weight:750;cursor:pointer;transition:.18s ease}.avans-theme-toggle:hover{transform:translateY(-1px);border-color:#d8c8df}.avans-theme-toggle span{line-height:1}
+
+.avans-v2-shell small,
+.avans-v2-shell em,
+.avans-v2-shell time,
+.avans-v2-shell [class*="eyebrow"],
+.avans-v2-shell [class*="rowMeta"],
+.avans-v2-shell [class*="itemMeta"],
+.avans-v2-shell [class*="demoPill"],
+.avans-v2-shell [class*="productName"],
+.avans-v2-shell [class*="priority"],
+.avans-v2-shell [class*="navGroup"]>span{font-size:11px!important}
+
+html[data-avans-theme="dark"] .avans-v2-shell{background:#121018!important;color:#f7f2f8!important}
+html[data-avans-theme="dark"] .avans-v2-sidebar{background:#17121d!important;border-color:#2d2632!important}
+html[data-avans-theme="dark"] .avans-v2-topbar{background:rgba(23,18,29,.94)!important;border-color:#302735!important}
+html[data-avans-theme="dark"] .avans-theme-toggle{background:#241d29;color:#f6eff8;border-color:#3b3041}
+html[data-avans-theme="dark"] .avans-v2-shell nav a{color:#c4bac9!important}
+html[data-avans-theme="dark"] .avans-v2-shell nav a:hover{background:#241d29!important;color:#fff!important}
+html[data-avans-theme="dark"] .avans-v2-shell [class*="activeNav"]{background:linear-gradient(90deg,rgba(255,106,42,.16),rgba(217,70,239,.14),rgba(124,58,237,.12))!important;color:#fff!important}
+html[data-avans-theme="dark"] .avans-v2-shell [class*="workspace"]{background:#1d1722!important;border-color:#342a39!important}
+html[data-avans-theme="dark"] .avans-v2-shell [class*="moduleHero"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="panel"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="Panel"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="contextCard"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="clientHero"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="selectorCard"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="moduleRow"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="stats"] article,
+html[data-avans-theme="dark"] .avans-v2-shell [class*="Stats"] article{background:#1b1520!important;border-color:#302736!important;box-shadow:none!important}
+html[data-avans-theme="dark"] .avans-v2-shell [class*="moduleRow"]:hover{background:#241b29!important}
+html[data-avans-theme="dark"] .avans-v2-shell [class*="loopPanel"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="architecture"]{background:#18131d!important;border-color:#3a2f40!important}
+html[data-avans-theme="dark"] .avans-v2-shell [class*="flowStep"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="contextList"]>div,
+html[data-avans-theme="dark"] .avans-v2-shell [class*="startBox"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="preflightRow"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="queueItem"]{background:#211a26!important;border-color:#352b3b!important}
+html[data-avans-theme="dark"] .avans-v2-shell h1,
+html[data-avans-theme="dark"] .avans-v2-shell h2,
+html[data-avans-theme="dark"] .avans-v2-shell h3,
+html[data-avans-theme="dark"] .avans-v2-shell strong{color:#fff!important}
+html[data-avans-theme="dark"] .avans-v2-shell p,
+html[data-avans-theme="dark"] .avans-v2-shell small,
+html[data-avans-theme="dark"] .avans-v2-shell [class*="description"]{color:#bcb0c2!important}
+html[data-avans-theme="dark"] .avans-v2-shell [class*="moduleRows"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="attentionItem"],
+html[data-avans-theme="dark"] .avans-v2-shell [class*="activityList"]>div,
+html[data-avans-theme="dark"] .avans-v2-shell [class*="learningList"]>div{border-color:#302736!important}
+html[data-avans-theme="dark"] .avans-v2-shell input,
+html[data-avans-theme="dark"] .avans-v2-shell select,
+html[data-avans-theme="dark"] .avans-v2-shell textarea{background:#211a26!important;color:#fff!important;border-color:#3a3040!important}
+
+@media(max-width:760px){.avans-theme-toggle span{display:none}.avans-theme-toggle{padding:8px}}
