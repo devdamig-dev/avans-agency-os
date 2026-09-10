@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
 import { AgencyClientGate } from "../components/agency-client-gate";
@@ -5,7 +6,7 @@ import { ModuleDepth } from "../components/module-depth";
 import { V2Chrome } from "../components/v2-chrome";
 import { v2NavItems } from "../navigation";
 import { sectionData } from "../section-data";
-import type { AgencyModuleSlug } from "../agency-client-data";
+import { avansClients, type AgencyModuleSlug } from "../agency-client-data";
 import styles from "../v2.module.css";
 
 const clientScopedAgencyModules = new Set<AgencyModuleSlug>(["contenido", "campanas", "reportes"]);
@@ -71,19 +72,32 @@ export default async function V2SectionPage({
             </div>
 
             <div className={styles.moduleRows}>
-              {data.rows.map((row) => (
-                <button key={row.title} className={styles.moduleRow}>
-                  <div>
-                    <span className={styles.rowMeta}>{row.meta}</span>
-                    <h3>{row.title}</h3>
-                    <p>{row.detail}</p>
-                  </div>
-                  <div className={styles.rowSide}>
-                    <span>{row.status}</span>
-                    <ArrowRight size={15} />
-                  </div>
-                </button>
-              ))}
+              {data.rows.map((row) => {
+                const client = section === "clientes" ? avansClients.find((item) => item.name === row.title) : null;
+                const content = (
+                  <>
+                    <div>
+                      <span className={styles.rowMeta}>{row.meta}</span>
+                      <h3>{row.title}</h3>
+                      <p>{row.detail}</p>
+                    </div>
+                    <div className={styles.rowSide}>
+                      <span>{row.status}</span>
+                      <ArrowRight size={15} />
+                    </div>
+                  </>
+                );
+
+                return client ? (
+                  <Link key={row.title} href={`/v2/clientes/${client.slug}`} className={styles.moduleRow}>
+                    {content}
+                  </Link>
+                ) : (
+                  <button key={row.title} className={styles.moduleRow}>
+                    {content}
+                  </button>
+                );
+              })}
             </div>
           </article>
 
