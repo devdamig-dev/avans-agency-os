@@ -12,37 +12,39 @@ export type AttentionItem = {
   due: string;
 };
 
+export const avansClients = ["Epsa", "ACA", "Grupo Portland", "Edinovo", "Lider Energy"];
+
 export const attentionItems: AttentionItem[] = [
   {
     id: "att-001",
     kind: "alert",
     priority: "Crítica",
-    title: "Milen · Fatiga creativa detectada",
-    context: "Campaign Intelligence · Meta Ads",
-    reason: "El CPL subió 38% en 6 días y dos creatividades concentran la caída de conversión.",
-    recommendation: "Preparar dos variantes nuevas y mantener presupuesto hasta validar recuperación.",
-    owner: "Vale",
+    title: "Epsa · Campaña requiere revisión",
+    context: "Campaign Intelligence · Performance",
+    reason: "El sistema detectó una variación relevante frente al comportamiento esperado y abrió una excepción para revisión humana.",
+    recommendation: "Revisar la causa antes de modificar inversión y dejar registrada la decisión para medir el resultado.",
+    owner: "Performance",
     due: "Hoy · 12:30",
   },
   {
     id: "att-002",
     kind: "blocker",
     priority: "Alta",
-    title: "Line Up · QA bloqueado por acceso pendiente",
-    context: "Process Engine · Implementación CRM",
-    reason: "Falta permiso administrador de Meta desde hace 4 días y el hito de QA queda expuesto.",
-    recommendation: "Escalar el pedido al sponsor y mover las tareas no dependientes en paralelo.",
-    owner: "Juan",
+    title: "ACA · Proceso bloqueado por información pendiente",
+    context: "Process Engine · Operación de cuenta",
+    reason: "Falta un insumo requerido para continuar el siguiente paso del workflow y el sistema evitó avanzar con datos incompletos.",
+    recommendation: "Solicitar el dato faltante y continuar automáticamente cuando se cumpla la precondición.",
+    owner: "Cuenta",
     due: "Hoy · 14:00",
   },
   {
     id: "att-003",
     kind: "approval",
     priority: "Alta",
-    title: "Marzo Pumps · Propuesta lista para validar",
+    title: "Grupo Portland · Propuesta lista para validar",
     context: "Decision Center · Propuesta comercial",
-    reason: "Alcance técnico y etapas están completos; inversión y exclusiones requieren decisión humana.",
-    recommendation: "Validar inversión y alcance antes de generar la versión cliente.",
+    reason: "Diagnóstico, etapas y entregables están completos; inversión y alcance final requieren validación humana.",
+    recommendation: "Validar alcance e inversión antes de generar la versión final para el cliente.",
     owner: "Dirección",
     due: "Hoy · 16:00",
   },
@@ -50,11 +52,11 @@ export const attentionItems: AttentionItem[] = [
     id: "att-004",
     kind: "learning",
     priority: "Media",
-    title: "Lonkar · Nuevo patrón de copy para validar",
+    title: "Edinovo · Nuevo aprendizaje para validar",
     context: "Learning Engine · Client Intelligence",
-    reason: "Las últimas 6 piezas aprobadas eliminan superlativos y priorizan beneficios concretos.",
-    recommendation: "Incorporar el patrón como preferencia de comunicación validada.",
-    owner: "Cami",
+    reason: "El sistema encontró un patrón consistente entre piezas aprobadas y feedback reciente de la cuenta.",
+    recommendation: "Validar el patrón antes de incorporarlo como criterio persistente del cliente.",
+    owner: "Estrategia",
     due: "Mañana",
   },
 ];
@@ -67,26 +69,26 @@ export const stats = [
 ];
 
 export const automaticActivity = [
-  ["09:42", "Onboarding", "Se verificaron requisitos de Salutaris", "Completado"],
-  ["09:35", "Reporting", "Se normalizaron métricas de Meta + GA4 para Milen", "Completado"],
-  ["09:21", "Workflow", "Se creó tarea por compromiso de reunión de Line Up", "Completado"],
-  ["08:58", "Campaign", "Se detectó anomalía de CPL y se abrió alerta crítica", "Derivado"],
+  ["09:42", "Onboarding", "Se verificaron requisitos de Lider Energy", "Completado"],
+  ["09:35", "Reporting", "Se consolidaron métricas para Epsa", "Completado"],
+  ["09:21", "Workflow", "Se creó una tarea desde un compromiso de ACA", "Completado"],
+  ["08:58", "Campaign", "Se detectó una anomalía y se abrió una alerta para Grupo Portland", "Derivado"],
 ];
 
 export const learningSignals = [
   {
-    client: "Milen Muebles",
-    signal: "Los copies aprobados convierten mejor cuando el beneficio aparece en la primera línea.",
-    status: "Validado",
+    client: "Edinovo",
+    signal: "Se detectó un patrón recurrente en feedback y aprobaciones que puede transformarse en una regla de contexto.",
+    status: "Validar",
   },
   {
-    client: "Line Up",
-    signal: "Las tareas de integración sin owner definido son el principal origen de demoras.",
+    client: "Lider Energy",
+    signal: "Una dependencia operativa aparece repetidamente antes de determinados entregables y puede anticiparse desde el workflow.",
     status: "Propuesto",
   },
   {
-    client: "Marzo Pumps",
-    signal: "LinkedIn técnico obtiene mejor respuesta que contenidos institucionales genéricos.",
+    client: "Epsa",
+    signal: "El sistema está midiendo el resultado posterior de una recomendación aprobada para definir si el criterio se conserva.",
     status: "Midiendo",
   },
 ];
