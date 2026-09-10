@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
+import "./theme-overrides.css";
 
 const figtree = Figtree({
   subsets: ["latin"],
