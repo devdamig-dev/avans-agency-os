@@ -1,6 +1,7 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
 import { AgencyClientGate } from "../components/agency-client-gate";
+import { ModuleDepth } from "../components/module-depth";
 import { V2Chrome } from "../components/v2-chrome";
 import { v2NavItems } from "../navigation";
 import { sectionData } from "../section-data";
@@ -100,6 +101,8 @@ export default async function V2SectionPage({
             </div>
           </aside>
         </section>
+
+        <ModuleDepth section={section} />
       </div>
     </V2Chrome>
   );
