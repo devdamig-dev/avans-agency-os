@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, CircleAlert, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
+import { AgencyDepth } from "../../../components/agency-depth";
 import { V2Chrome } from "../../../components/v2-chrome";
 import { agencyModuleConfig, avansClients, type AgencyModuleSlug } from "../../../agency-client-data";
 import styles from "../../../client-work.module.css";
@@ -143,6 +144,8 @@ export default async function ClientAgencyWorkspace({
             </article>
           </aside>
         </section>
+
+        <AgencyDepth clientName={client.name} module={module} />
       </div>
     </V2Chrome>
   );
