@@ -1,9 +1,13 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
+import { AgencyClientGate } from "../components/agency-client-gate";
 import { V2Chrome } from "../components/v2-chrome";
 import { v2NavItems } from "../navigation";
 import { sectionData } from "../section-data";
+import type { AgencyModuleSlug } from "../agency-client-data";
 import styles from "../v2.module.css";
+
+const clientScopedAgencyModules = new Set<AgencyModuleSlug>(["contenido", "campanas", "reportes"]);
 
 export function generateStaticParams() {
   return v2NavItems
@@ -21,6 +25,14 @@ export default async function V2SectionPage({
   const data = sectionData[section];
 
   if (!navItem || !data) notFound();
+
+  if (clientScopedAgencyModules.has(section as AgencyModuleSlug)) {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <AgencyClientGate module={section as AgencyModuleSlug} />
+      </V2Chrome>
+    );
+  }
 
   return (
     <V2Chrome active={section} title={navItem.label}>
