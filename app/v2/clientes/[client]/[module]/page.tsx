@@ -49,6 +49,7 @@ export default async function ClientAgencyWorkspace({
         </section>
 
         <nav className={styles.moduleTabs} aria-label="Workspace del cliente">
+          <Link href={`/v2/clientes/${client.slug}`}>Resumen</Link>
           {modules.map((item) => (
             <Link
               key={item}
