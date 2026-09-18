@@ -1,0 +1,54 @@
+.avans-v2-shell{
+  --avans-coral:#FF6C4C;
+  --avans-coral-hover:#E95E42;
+  --avans-coral-dark:#C84F37;
+  --avans-coral-soft:#FFF1EC;
+  --avans-coral-softer:#FFF8F5;
+
+  --avans-black:#151515;
+  --avans-charcoal:#242424;
+  --avans-text:#343434;
+  --avans-text-muted:#737373;
+  --avans-text-soft:#949494;
+
+  --avans-bg:#F5F4F1;
+  --avans-surface:#FFFFFF;
+  --avans-surface-soft:#F0EFEC;
+  --avans-border:#E5E2DE;
+  --avans-border-strong:#D8D4CF;
+
+  --avans-success:#2C8A61;
+  --avans-success-soft:#EDF8F2;
+  --avans-warning:#BE7B21;
+  --avans-warning-soft:#FFF5E8;
+  --avans-danger:#D44F4F;
+  --avans-danger-soft:#FFF0F0;
+
+  --avans-radius-sm:8px;
+  --avans-radius-md:12px;
+  --avans-radius-lg:16px;
+  --avans-radius-xl:20px;
+
+  --avans-shadow-sm:0 6px 18px rgba(21,21,21,.035);
+  --avans-shadow-md:0 10px 28px rgba(21,21,21,.055);
+
+  --avans-font-xs:11px;
+  --avans-font-sm:12px;
+  --avans-font-md:14px;
+  --avans-font-lg:18px;
+}
+
+html[data-avans-theme="dark"] .avans-v2-shell{
+  --avans-bg:#101010;
+  --avans-surface:#171717;
+  --avans-surface-soft:#202020;
+  --avans-border:#303030;
+  --avans-border-strong:#3B3B3B;
+  --avans-text:#F5F5F5;
+  --avans-text-muted:#B9B9B9;
+  --avans-text-soft:#949494;
+  --avans-coral-soft:#2A1B17;
+  --avans-coral-softer:#211916;
+  --avans-shadow-sm:none;
+  --avans-shadow-md:none;
+}
