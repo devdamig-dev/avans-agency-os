@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, CheckCircle2, Database, ShieldCheck, Sparkles, Workflow } from "lucide-react";
 import { notFound } from "next/navigation";
 import { DecisionWorkbench } from "../../../components/decision-workbench";
+import { SectionObjectDepth } from "../../../components/section-object-depth";
 import { V2Chrome } from "../../../components/v2-chrome";
 import { getOperationalObject, getOperationalObjectParams } from "../../../object-data";
 import { sectionData } from "../../../section-data";
@@ -149,6 +150,8 @@ export default async function OperationalObjectPage({
             </article>
           </aside>
         </section>
+
+        <SectionObjectDepth section={section} title={object.title} client={object.client} />
       </div>
     </V2Chrome>
   );
