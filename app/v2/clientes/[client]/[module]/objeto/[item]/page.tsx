@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2, Database, ShieldCheck, Sparkles, Workflow } from "lucide-react";
 import { notFound } from "next/navigation";
-import { agencyModuleConfig, avansClients, type AgencyModuleSlug } from "../../../../../../agency-client-data";
-import { moduleDetails } from "../../../../../../components/agency-depth";
-import { DecisionWorkbench } from "../../../../../../components/decision-workbench";
-import { V2Chrome } from "../../../../../../components/v2-chrome";
-import styles from "../../../../../../object-detail.module.css";
+import { agencyModuleConfig, avansClients, type AgencyModuleSlug } from "../../../../../agency-client-data";
+import { moduleDetails } from "../../../../../components/agency-depth";
+import { DecisionWorkbench } from "../../../../../components/decision-workbench";
+import { V2Chrome } from "../../../../../components/v2-chrome";
+import styles from "../../../../../object-detail.module.css";
 
 const modules: AgencyModuleSlug[] = ["contenido", "campanas", "reportes"];
 
