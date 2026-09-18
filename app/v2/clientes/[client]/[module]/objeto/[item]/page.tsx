@@ -3,6 +3,7 @@ import { ArrowLeft, CheckCircle2, Database, ShieldCheck, Sparkles, Workflow } fr
 import { notFound } from "next/navigation";
 import { agencyModuleConfig, avansClients, type AgencyModuleSlug } from "../../../../../agency-client-data";
 import { moduleDetails } from "../../../../../components/agency-depth";
+import { AgencyObjectDepth } from "../../../../../components/agency-object-depth";
 import { DecisionWorkbench } from "../../../../../components/decision-workbench";
 import { V2Chrome } from "../../../../../components/v2-chrome";
 import styles from "../../../../../object-detail.module.css";
@@ -175,6 +176,8 @@ export default async function AgencyObjectPage({
             </article>
           </aside>
         </section>
+
+        <AgencyObjectDepth module={module} clientName={client.name} title={title} />
       </div>
     </V2Chrome>
   );
