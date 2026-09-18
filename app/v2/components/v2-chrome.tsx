@@ -68,7 +68,7 @@ export function V2Chrome({
         </div>
 
         <div className={styles.workspace}>
-          <span className={styles.mark}>A</span>
+          <span className={styles.mark}>↗</span>
           <div>
             <strong>Avans Agency</strong>
             <small>Workspace · V2</small>
