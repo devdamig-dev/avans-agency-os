@@ -146,7 +146,7 @@ export default async function ClientAgencyWorkspace({
           </aside>
         </section>
 
-        <AgencyDepth clientName={client.name} module={module} />
+        <AgencyDepth clientName={client.name} clientSlug={client.slug} module={module} />
       </div>
     </V2Chrome>
   );
