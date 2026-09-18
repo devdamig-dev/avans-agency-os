@@ -1,7 +1,8 @@
+import Link from "next/link";
 import type { AgencyModuleSlug } from "../agency-client-data";
 import styles from "./agency-depth.module.css";
 
-const moduleDetails: Record<AgencyModuleSlug, {
+export const moduleDetails: Record<AgencyModuleSlug, {
   brief: { label: string; value: string }[];
   decisions: { title: string; detail: string; status: string }[];
   lanes: { label: string; title: string; detail: string }[];
@@ -78,7 +79,7 @@ const moduleDetails: Record<AgencyModuleSlug, {
   },
 };
 
-export function AgencyDepth({ clientName, module }: { clientName: string; module: AgencyModuleSlug }) {
+export function AgencyDepth({ clientName, clientSlug, module }: { clientName: string; clientSlug: string; module: AgencyModuleSlug }) {
   const data = moduleDetails[module];
 
   return (
@@ -101,14 +102,18 @@ export function AgencyDepth({ clientName, module }: { clientName: string; module
           <span className={styles.eyebrow}>DECISION CENTER</span>
           <h2>Decisiones abiertas del módulo</h2>
           <div className={styles.decisionList}>
-            {data.decisions.map((item) => (
-              <div className={styles.decision} key={item.title}>
+            {data.decisions.map((item, index) => (
+              <Link
+                href={`/v2/clientes/${clientSlug}/${module}/objeto/decision-${index + 1}`}
+                className={styles.decision}
+                key={item.title}
+              >
                 <div>
                   <strong>{item.title}</strong>
                   <small>{item.detail}</small>
                 </div>
                 <em>{item.status}</em>
-              </div>
+              </Link>
             ))}
           </div>
         </article>
@@ -132,15 +137,19 @@ export function AgencyDepth({ clientName, module }: { clientName: string; module
         <span className={styles.eyebrow}>TRAZABILIDAD · DEMO</span>
         <h2>Actividad reciente de {clientName}</h2>
         <div className={styles.history}>
-          {data.history.map((item) => (
-            <div className={styles.historyRow} key={item.time + item.title}>
+          {data.history.map((item, index) => (
+            <Link
+              href={`/v2/clientes/${clientSlug}/${module}/objeto/history-${index + 1}`}
+              className={styles.historyRow}
+              key={item.time + item.title}
+            >
               <time>{item.time}</time>
               <div>
                 <strong>{item.title}</strong>
                 <small>{item.detail}</small>
               </div>
               <em>{item.status}</em>
-            </div>
+            </Link>
           ))}
         </div>
       </article>
