@@ -5,6 +5,7 @@ import { AgencyClientGate } from "../components/agency-client-gate";
 import { ModuleDepth } from "../components/module-depth";
 import { V2Chrome } from "../components/v2-chrome";
 import { v2NavItems } from "../navigation";
+import { getOperationalObjectForRow } from "../object-data";
 import { sectionData } from "../section-data";
 import { avansClients, type AgencyModuleSlug } from "../agency-client-data";
 import styles from "../v2.module.css";
@@ -74,6 +75,7 @@ export default async function V2SectionPage({
             <div className={styles.moduleRows}>
               {data.rows.map((row) => {
                 const client = section === "clientes" ? avansClients.find((item) => item.name === row.title) : null;
+                const object = getOperationalObjectForRow(section, row.title);
                 const content = (
                   <>
                     <div>
@@ -88,11 +90,23 @@ export default async function V2SectionPage({
                   </>
                 );
 
-                return client ? (
-                  <Link key={row.title} href={`/v2/clientes/${client.slug}`} className={styles.moduleRow}>
-                    {content}
-                  </Link>
-                ) : (
+                if (client) {
+                  return (
+                    <Link key={row.title} href={`/v2/clientes/${client.slug}`} className={styles.moduleRow}>
+                      {content}
+                    </Link>
+                  );
+                }
+
+                if (object) {
+                  return (
+                    <Link key={row.title} href={`/v2/objetos/${section}/${object.slug}`} className={styles.moduleRow}>
+                      {content}
+                    </Link>
+                  );
+                }
+
+                return (
                   <button key={row.title} className={styles.moduleRow}>
                     {content}
                   </button>
