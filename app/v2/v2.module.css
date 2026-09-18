@@ -19,8 +19,8 @@
 .shell *{box-sizing:border-box}.shell a{text-decoration:none;color:inherit}.shell button{font:inherit}
 
 .sidebar{
-  background:#fff;
-  border-right:1px solid var(--border);
+  background:#151515;
+  border-right:1px solid #292929;
   padding:22px 16px;
   display:flex;
   flex-direction:column;
@@ -31,12 +31,12 @@
   overflow:auto;
 }
 
-.brand{padding:0 4px 2px;display:flex;align-items:center;justify-content:space-between;gap:10px}.brand>a{display:flex}.productName{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#777777;font-weight:800}
-.workspace{display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid var(--border);background:#faf9f7;border-radius:12px}.workspace strong,.workspace small{display:block}.workspace strong{font-size:12px}.workspace small{font-size:10px;color:#8a8a8a;margin-top:2px}.mark{width:31px;height:31px;border-radius:9px;background:linear-gradient(135deg,#ff6c4c,#ff8a6e);display:grid;place-items:center;font-weight:800;color:#fff;box-shadow:0 6px 16px rgba(217,70,239,.18)}
+.brand{padding:4px 4px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #292929}.brand>a{display:flex}.productName{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#777;font-weight:800;white-space:nowrap}
+.workspace{display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid #303030;background:#1d1d1d;border-radius:12px;color:#fff}.workspace strong,.workspace small{font-size:11px;color:#8f8f8f;margin-top:2px}.workspace strong{font-size:12px;color:#fff}.workspace small{font-size:10px;color:#8a8a8a;margin-top:2px}.mark{width:31px;height:31px;border-radius:9px;background:#ff6c4c;display:grid;place-items:center;font-weight:850;color:#151515;box-shadow:none;font-size:18px;line-height:1}
 
-.nav{display:flex;flex-direction:column;gap:16px}.navGroup>span{display:block;padding:0 9px 6px;color:#8b8b8b;font-size:9px;letter-spacing:.15em;text-transform:uppercase;font-weight:800}.navGroup a{width:100%;color:#626262;display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;text-align:left;font-size:12px;font-weight:600;transition:.18s ease}.navGroup a:hover{background:#f0efec;color:#2a2a2a}.navGroup a span:last-child{flex:1}.activeNav{background:linear-gradient(90deg,rgba(255,106,42,.09),rgba(217,70,239,.08),rgba(124,58,237,.06))!important;color:#1f1f1f!important;box-shadow:inset 3px 0 0 var(--orange)}.activeNav svg{color:var(--magenta)}.dot{width:5px;height:5px;border-radius:50%;background:#aaaaaa}
+.nav{display:flex;flex-direction:column;gap:16px}.navGroup>span{display:block;padding:0 9px 6px;color:#737373;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800}.navGroup a{width:100%;color:#bdbdbd;display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;text-align:left;font-size:12px;font-weight:600;transition:.18s ease}.navGroup a:hover{background:#202020;color:#fff}.navGroup a span:last-child{flex:1}.activeNav{background:#241b18!important;color:#fff!important;box-shadow:inset 3px 0 0 #ff6c4c!important}.activeNav svg{color:#ff6c4c!important}.dot{width:5px;height:5px;border-radius:50%;background:#aaaaaa}
 
-.guardrail{margin-top:auto;border:1px solid #e5e2de;background:linear-gradient(135deg,rgba(124,58,237,.05),rgba(217,70,239,.035));border-radius:12px;padding:12px;display:flex;gap:9px;color:#b14d38}.guardrail strong,.guardrail small{display:block}.guardrail strong{font-size:11px}.guardrail small{font-size:9px;color:#808080;margin-top:3px;line-height:1.4}
+.guardrail{margin-top:auto;border:1px solid #303030;background:#1d1d1d;border-radius:12px;padding:12px;display:flex;gap:9px;color:#ff6c4c}.guardrail strong,.guardrail small{font-size:11px;color:#909090;margin-top:3px;line-height:1.4}.guardrail strong{font-size:11px;color:#fff}.guardrail small{font-size:9px;color:#808080;margin-top:3px;line-height:1.4}
 
 .workspaceMain{min-width:0}.topbar{height:64px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(255,255,255,.91);backdrop-filter:blur(14px);position:sticky;top:0;z-index:5}.topbar>div:first-child{display:flex;gap:7px;font-size:12px}.topbar>div:first-child span{color:#919191}.topbar>div:first-child strong{font-weight:800}.topStatus{font-size:10px;color:#717171;display:flex;align-items:center;gap:7px}.liveDot{width:7px;height:7px;border-radius:50%;background:#22a968;box-shadow:0 0 0 4px rgba(34,169,104,.09)}
 
@@ -62,10 +62,6 @@
 @media(max-width:760px){.shell{display:block}.sidebar{position:relative;height:auto;display:block;border-right:0;border-bottom:1px solid var(--border)}.brand,.workspace,.guardrail{display:none}.nav{display:flex;flex-direction:row;gap:8px;overflow-x:auto;padding-bottom:4px}.navGroup{min-width:max-content}.navGroup>span{display:none}.navGroup{display:flex;gap:4px}.navGroup a{width:auto;white-space:nowrap;padding:8px 9px}.topbar{padding:0 16px}.topStatus{display:none}.content{padding:16px}.hero{padding:24px}.hero h1{font-size:31px}.stats,.moduleStats,.gridSecondary{grid-template-columns:1fr}.attentionItem{grid-template-columns:auto 1fr}.itemSide{grid-column:2;text-align:left;align-items:flex-start}.loop{grid-template-columns:repeat(2,1fr)}.architecture{align-items:flex-start;flex-direction:column}.architecture>svg{transform:rotate(90deg)}.moduleHero{align-items:flex-start;flex-direction:column}.moduleHero h1{font-size:30px}.primaryAction{width:100%;justify-content:center}.moduleRow{grid-template-columns:1fr}.rowSide{justify-content:space-between}}
 
 /* Avans 2026 brand refresh */
-.brand{background:#151515;border:1px solid #292929;border-radius:12px;padding:12px 13px!important;min-height:54px}
-.brand>a{align-items:center;min-width:0}
-.productName{color:#a5a5a5!important;letter-spacing:.1em!important}
-.mark{background:#ff6c4c!important;box-shadow:0 6px 16px rgba(255,108,76,.18)!important}
 .activeNav{background:rgba(255,108,76,.09)!important;box-shadow:inset 3px 0 0 #ff6c4c!important}
 .activeNav svg{color:#ff6c4c!important}
 .hero{background:radial-gradient(circle at 8% 10%,rgba(255,108,76,.34),transparent 32%),#151515!important}
