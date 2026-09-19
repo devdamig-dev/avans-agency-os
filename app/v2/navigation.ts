@@ -14,6 +14,7 @@ export const v2NavGroups: V2NavGroup[] = [
     group: "General",
     items: [
       { label: "Command Center", slug: "command-center", href: "/v2" },
+      { label: "Agents Office", slug: "office", href: "/v2/office" },
       { label: "Inbox", slug: "inbox", href: "/v2/inbox" },
     ],
   },
