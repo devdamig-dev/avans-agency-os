@@ -39,6 +39,8 @@ type Plan = {
   risk: "low" | "medium" | "high";
 };
 
+const AGENCY_WORKSPACE = "Avans Agency";
+
 const departments: Department[] = [
   { id: "strategy", name: "Dirección & Estrategia", icon: BrainCircuit, agents: ["Director", "Brand Strategist"], active: 2, tasks: 4, autonomy: 48, accent: "violet" },
   { id: "creative", name: "Creative Studio", icon: Palette, agents: ["Copywriter", "Designer"], active: 2, tasks: 7, autonomy: 61, accent: "pink" },
@@ -50,15 +52,12 @@ const departments: Department[] = [
 
 const initialTasks = [
   { id: "T-184", title: "QA final Filial Berazategui", owner: "QA Agent", status: "working", time: "Ahora" },
-  { id: "T-183", title: "Paquete social Sin Equipaje", owner: "Creative Studio", status: "review", time: "8 min" },
+  { id: "T-183", title: "Contenido Ecobags", owner: "Creative Studio", status: "review", time: "8 min" },
   { id: "T-182", title: "Reporte performance Milen", owner: "Ads Specialist", status: "done", time: "21 min" },
   { id: "T-181", title: "Seguimiento leads Avans", owner: "CRM Specialist", status: "done", time: "34 min" },
 ];
 
-const workspaces = ["Avans Agency", "GastroPilot", "Sin Equipaje", "Nexodg"];
-
 export function OfficeConsole() {
-  const [workspace, setWorkspace] = useState(workspaces[0]);
   const [selected, setSelected] = useState(departments[0].id);
   const [task, setTask] = useState("");
   const [plan, setPlan] = useState<Plan | null>(null);
@@ -83,7 +82,7 @@ export function OfficeConsole() {
       const response = await fetch("/api/agent-router", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ task: clean, workspace }),
+        body: JSON.stringify({ task: clean, workspace: AGENCY_WORKSPACE }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data?.error || "No se pudo enrutar la tarea");
@@ -114,16 +113,14 @@ export function OfficeConsole() {
     <div className={styles.page}>
       <section className={styles.header}>
         <div>
-          <span className={styles.eyebrow}>AVANS COMMAND CENTER · CONTROL ROOM</span>
-          <h1>Tu equipo de agentes, trabajando como una oficina.</h1>
-          <p>Delegá un objetivo. El Director lo descompone, asigna especialistas, cruza resultados con QA y frena cualquier acción sensible hasta tu aprobación.</p>
+          <span className={styles.eyebrow}>AVANS AGENCY · AGENTS OFFICE</span>
+          <h1>El equipo de agentes de la agencia, en un solo command center.</h1>
+          <p>Este sistema queda dedicado exclusivamente a clientes, operación, proyectos y procesos de Avans Agency. Los proyectos personales viven en un Command Center independiente.</p>
         </div>
         <div className={styles.workspaceControl}>
-          <span>Workspace</span>
-          <select value={workspace} onChange={(event) => setWorkspace(event.target.value)}>
-            {workspaces.map((item) => <option key={item}>{item}</option>)}
-          </select>
-          <small><span className={styles.liveDot} /> 11 agentes disponibles</small>
+          <span>Sistema</span>
+          <strong>Avans Agency OS</strong>
+          <small><span className={styles.liveDot} /> 11 agentes · scope agencia</small>
         </div>
       </section>
 
@@ -133,8 +130,8 @@ export function OfficeConsole() {
           <input
             value={task}
             onChange={(event) => setTask(event.target.value)}
-            placeholder="Ej: Prepará todo lo necesario para la reunión de River del lunes"
-            aria-label="Nueva tarea para el equipo de agentes"
+            placeholder="Ej: Prepará todo lo necesario para la reunión con un cliente del lunes"
+            aria-label="Nueva tarea para el equipo de agentes de Avans"
           />
           <button type="submit" disabled={!task.trim() || loading}>
             {loading ? <Activity size={16} className={styles.spin} /> : <Send size={16} />}
@@ -143,21 +140,21 @@ export function OfficeConsole() {
         </form>
         <div className={styles.guardrailLine}>
           <ShieldCheck size={14} />
-          <span>Autonomía controlada: publicaciones, envíos, pagos y cambios externos requieren validación según política.</span>
+          <span>Scope aislado: este router no recibe proyectos personales. Publicaciones, envíos, pagos y cambios externos requieren validación según política.</span>
         </div>
       </section>
 
       <section className={styles.controlGrid}>
         <div className={styles.officePanel}>
           <div className={styles.panelHeader}>
-            <div><span className={styles.eyebrow}>LIVE OFFICE</span><h2>Mapa operativo</h2></div>
+            <div><span className={styles.eyebrow}>LIVE AGENCY OFFICE</span><h2>Mapa operativo</h2></div>
             <div className={styles.officeStats}><span>6 áreas</span><span>27 tareas</span><span>0 errores críticos</span></div>
           </div>
 
           <div className={styles.officeMap}>
             <div className={styles.coreNode}>
               <Bot size={19} />
-              <strong>Director</strong>
+              <strong>Agency Director</strong>
               <span>Orchestrator</span>
               <i />
             </div>
@@ -206,7 +203,7 @@ export function OfficeConsole() {
 
         <aside className={styles.sidePanel}>
           <div className={styles.panelHeader}>
-            <div><span className={styles.eyebrow}>TASK STATUS</span><h2>Actividad</h2></div>
+            <div><span className={styles.eyebrow}>AGENCY TASK STATUS</span><h2>Actividad</h2></div>
             <Activity size={17} />
           </div>
           <div className={styles.taskList}>
@@ -225,7 +222,7 @@ export function OfficeConsole() {
           </div>
 
           <div className={styles.approvalBox}>
-            <div><ShieldCheck size={16} /><strong>Approval Queue</strong></div>
+            <div><ShieldCheck size={16} /><strong>Agency Approval Queue</strong></div>
             <p>2 acciones esperan validación humana.</p>
             <button type="button">Abrir Intelligent Inbox</button>
           </div>
@@ -236,7 +233,7 @@ export function OfficeConsole() {
         <section className={styles.planPanel}>
           <div className={styles.planHead}>
             <div>
-              <span className={styles.eyebrow}>ROUTING RESULT · {routingMode === "ai" ? "AI" : "SAFE FALLBACK"}</span>
+              <span className={styles.eyebrow}>AGENCY ROUTING · {routingMode === "ai" ? "AI" : "SAFE FALLBACK"}</span>
               <h2>{plan.department}</h2>
               <p>{plan.summary}</p>
             </div>
@@ -264,8 +261,8 @@ export function OfficeConsole() {
 
       <section className={styles.footerStrip}>
         <span><Clock3 size={14} /> Última sincronización: ahora</span>
-        <span><ShieldCheck size={14} /> Guardrails activos</span>
-        <span><Bot size={14} /> Router preparado para OpenAI Responses API</span>
+        <span><ShieldCheck size={14} /> Scope: Avans Agency</span>
+        <span><Bot size={14} /> Personal Command Center separado</span>
       </section>
     </div>
   );
