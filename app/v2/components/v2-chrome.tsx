@@ -3,6 +3,7 @@ import {
   Bot,
   BrainCircuit,
   BriefcaseBusiness,
+  Building2,
   ChartNoAxesCombined,
   ClipboardCheck,
   FileChartColumn,
@@ -27,6 +28,7 @@ import styles from "../v2.module.css";
 
 const iconMap: Record<string, React.ElementType> = {
   "command-center": Gauge,
+  office: Building2,
   inbox: Inbox,
   clientes: Users,
   procesos: Network,
