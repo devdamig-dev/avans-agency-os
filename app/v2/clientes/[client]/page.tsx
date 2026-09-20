@@ -58,6 +58,7 @@ export default async function ClientProfilePage({ params }: { params: Promise<{ 
           </div>
           <div className={styles.actions}>
             <Link href={`/v2/clientes/${client.slug}/contenido`}>Trabajar cuenta <ArrowRight size={13} /></Link>
+            {client.slug === "aca" && <Link href="/v2/casos/aca-seguimiento">Ver circuito conectado <ArrowRight size={13} /></Link>}
             <Link href="/v2/clientes">Cambiar cliente</Link>
           </div>
         </section>
