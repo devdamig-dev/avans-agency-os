@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import {
   ArrowRight,
   CheckCircle2,
@@ -15,6 +15,7 @@ import {
   UserCheck,
   Workflow,
 } from "lucide-react";
+import { useDemoState } from "./demo-state-provider";
 import styles from "./connected-case-console.module.css";
 
 const steps = [
@@ -70,14 +71,7 @@ const steps = [
 ] as const;
 
 export function ConnectedCaseConsole() {
-  const [stage, setStage] = useState(3);
-  const [note, setNote] = useState("Esperar confirmación del acceso y reanudar automáticamente.");
-  const [events, setEvents] = useState([
-    "10:02 · Reunión procesada",
-    "10:03 · 3 compromisos creados",
-    "10:04 · Proceso de seguimiento iniciado",
-    "10:31 · Precondición vencida → Inbox",
-  ]);
+  const { acaCaseStage: stage, note, events, setNote, advanceAcaCase, resetAcaCase } = useDemoState();
 
   const status = useMemo(() => {
     if (stage <= 2) return "Procesando";
@@ -87,31 +81,7 @@ export function ConnectedCaseConsole() {
     return "Resuelto";
   }, [stage]);
 
-  function advance() {
-    if (stage >= steps.length - 1) return;
-    const next = stage + 1;
-    const messages = [
-      "",
-      "",
-      "",
-      "",
-      "10:44 · Decisión aprobada por Account Lead",
-      "10:45 · Workflow reanudado dentro de guardrails",
-      "10:46 · Caso resuelto y auditado",
-    ];
-    setStage(next);
-    if (messages[next]) setEvents((current) => [...current, messages[next]]);
-  }
 
-  function reset() {
-    setStage(3);
-    setEvents([
-      "10:02 · Reunión procesada",
-      "10:03 · 3 compromisos creados",
-      "10:04 · Proceso de seguimiento iniciado",
-      "10:31 · Precondición vencida → Inbox",
-    ]);
-  }
 
   return (
     <section className={styles.console}>
@@ -155,11 +125,11 @@ export function ConnectedCaseConsole() {
             <textarea value={note} onChange={(event) => setNote(event.target.value)} rows={3}/>
           </label>
           <div className={styles.actions}>
-            <button onClick={advance} disabled={stage >= steps.length - 1}>
+            <button onClick={advanceAcaCase} disabled={stage >= steps.length - 1}>
               {stage === 3 ? "Aprobar continuación" : stage === 4 ? "Ejecutar dentro de guardrails" : stage === 5 ? "Registrar resultado" : "Avanzar circuito"}
               <ArrowRight size={14}/>
             </button>
-            <button className={styles.ghost} onClick={reset}><RotateCcw size={14}/> Reiniciar demo</button>
+            <button className={styles.ghost} onClick={resetAcaCase}><RotateCcw size={14}/> Reiniciar demo</button>
           </div>
           <div className={styles.guardrail}>
             <ShieldCheck size={16}/>
