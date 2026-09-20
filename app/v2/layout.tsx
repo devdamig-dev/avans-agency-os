@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./design-tokens.css";
 import "./theme-overrides.css";
+import { DemoStateProvider } from "./components/demo-state-provider";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -16,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function V2Layout({ children }: { children: React.ReactNode }) {
-  return <div className={figtree.className}>{children}</div>;
+  return <DemoStateProvider><div className={figtree.className}>{children}</div></DemoStateProvider>;
 }
