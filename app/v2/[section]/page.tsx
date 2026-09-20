@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
 import { AgencyClientGate } from "../components/agency-client-gate";
+import { ConnectedFlowBanner } from "../components/connected-flow-banner";
 import { ModuleDepth } from "../components/module-depth";
 import { V2Chrome } from "../components/v2-chrome";
 import { v2NavItems } from "../navigation";
@@ -40,6 +41,7 @@ export default async function V2SectionPage({
   return (
     <V2Chrome active={section} title={navItem.label}>
       <div className={styles.content}>
+        <ConnectedFlowBanner section={section} />
         <section className={styles.moduleHero}>
           <div>
             <span className={styles.eyebrow}>{data.eyebrow}</span>
