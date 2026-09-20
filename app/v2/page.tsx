@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import { V2Chrome } from "./components/v2-chrome";
 import { attentionItems, automaticActivity, intelligenceLoop, learningSignals, stats } from "./data";
+import { avansClients } from "./agency-client-data";
+import { clientHubData } from "./client-hub-data";
 import styles from "./v2.module.css";
 
 const kindLabel: Record<string, string> = {
@@ -21,6 +23,14 @@ const kindLabel: Record<string, string> = {
   alert: "Alerta",
   approval: "Aprobación",
   learning: "Aprendizaje",
+};
+
+const autonomyByClient: Record<string, string> = {
+  epsa: "64%",
+  aca: "52%",
+  "grupo-portland": "61%",
+  edinovo: "59%",
+  "lider-energy": "39%",
 };
 
 export default function V2Page() {
@@ -51,6 +61,39 @@ export default function V2Page() {
               <small>{stat.detail}</small>
             </article>
           ))}
+        </section>
+
+        <section className={styles.portfolioPanel}>
+          <div className={styles.panelHead}>
+            <div>
+              <span className={styles.eyebrow}>PORTFOLIO INTELLIGENCE</span>
+              <h2>Estado de las cuentas</h2>
+            </div>
+            <Link href="/v2/clientes">Abrir Client Intelligence <ArrowRight size={14} /></Link>
+          </div>
+          <div className={styles.portfolioGrid}>
+            {avansClients.map((client) => {
+              const hub = clientHubData[client.slug];
+              const prioritySignals = hub.signals.filter((signal) => signal.tone === "attention").length;
+              return (
+                <Link href={`/v2/clientes/${client.slug}`} className={styles.portfolioCard} key={client.slug}>
+                  <div className={styles.portfolioCardHead}>
+                    <div>
+                      <strong>{client.name}</strong>
+                      <span>{client.health}</span>
+                    </div>
+                    <ArrowRight size={14} />
+                  </div>
+                  <div className={styles.portfolioMetrics}>
+                    <div><span>Contexto</span><strong>{client.context}%</strong></div>
+                    <div><span>Atención</span><strong>{prioritySignals}</strong></div>
+                    <div><span>Autonomía</span><strong>{autonomyByClient[client.slug]}</strong></div>
+                  </div>
+                  <small>{hub.signals[0]?.title ?? "Sin señales prioritarias"}</small>
+                </Link>
+              );
+            })}
+          </div>
         </section>
 
         <section className={styles.gridMain}>
