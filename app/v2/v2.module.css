@@ -69,3 +69,17 @@
 .contextPanel{background:radial-gradient(circle at 100% 0,rgba(255,108,76,.12),transparent 38%),#1a1a1a!important}
 .primaryAction{background:#ff6c4c!important;box-shadow:0 8px 22px rgba(255,108,76,.18)!important}
 .moduleHero:before{background:#ff6c4c!important}
+
+.portfolioPanel{margin-bottom:14px;background:var(--avans-surface);border:1px solid var(--avans-border);border-radius:16px;padding:20px;box-shadow:var(--avans-shadow-sm)}
+.portfolioGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin-top:14px}
+.portfolioCard{display:block;text-decoration:none;color:var(--avans-text);border:1px solid var(--avans-border);background:var(--avans-surface-soft);border-radius:13px;padding:13px;transition:.18s ease}
+.portfolioCard:hover{transform:translateY(-1px);border-color:var(--avans-border-strong);background:var(--avans-coral-softer)}
+.portfolioCardHead{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.portfolioCardHead>div{min-width:0}.portfolioCardHead strong,.portfolioCardHead span{display:block}
+.portfolioCardHead strong{font-size:13px}.portfolioCardHead span{font-size:11px;color:var(--avans-text-muted);margin-top:2px}
+.portfolioCardHead>svg{color:var(--avans-coral-dark);flex:0 0 auto}
+.portfolioMetrics{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:12px}
+.portfolioMetrics>div{border-top:1px solid var(--avans-border);padding-top:7px}.portfolioMetrics span,.portfolioMetrics strong{display:block}
+.portfolioMetrics span{font-size:11px;color:var(--avans-text-soft)}.portfolioMetrics strong{font-size:14px;margin-top:2px}
+.portfolioCard>small{display:block;font-size:11px;line-height:1.4;color:var(--avans-text-muted);margin-top:11px}
+@media(max-width:1250px){.portfolioGrid{grid-template-columns:repeat(3,1fr)}}@media(max-width:760px){.portfolioGrid{grid-template-columns:1fr}}
