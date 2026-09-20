@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { V2Chrome } from "../../components/v2-chrome";
+import { AcaCaseImpact } from "../../components/aca-case-impact";
 import { avansClients } from "../../agency-client-data";
 import { clientHubData } from "../../client-hub-data";
 import styles from "./client-profile.module.css";
@@ -125,6 +126,7 @@ export default async function ClientProfilePage({ params }: { params: Promise<{ 
                   </div>
                 ))}
               </div>
+              {client.slug === "aca" && <AcaCaseImpact />}
             </article>
 
             <article className={styles.panel} id="contexto">
