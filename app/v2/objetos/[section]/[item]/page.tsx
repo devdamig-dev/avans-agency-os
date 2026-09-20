@@ -20,15 +20,27 @@ export default async function OperationalObjectPage({
   const { section, item } = await params;
   const object = getOperationalObject(section, item);
   const sectionLabel = sectionData[section]?.title ?? section;
+  const connectedCase =
+    (section === "reuniones" && item === "aca-seguimiento") ||
+    (section === "inbox" && item === "aca-insumo-pendiente") ||
+    (section === "procesos" && item === "seguimiento-de-compromisos") ||
+    (section === "auditoria" && item === "recomendacion-aprobada");
 
   if (!object) notFound();
 
   return (
     <V2Chrome active={section} title={`${sectionLabel} · Detalle`}>
       <div className={styles.wrap}>
-        <Link href={`/v2/${section}`} className={styles.back}>
-          <ArrowLeft size={14} /> Volver a {sectionLabel}
-        </Link>
+        <div className={styles.topLinks}>
+          <Link href={`/v2/${section}`} className={styles.back}>
+            <ArrowLeft size={14} /> Volver a {sectionLabel}
+          </Link>
+          {connectedCase && (
+            <Link href="/v2/casos/aca-seguimiento" className={styles.connectedLink}>
+              Ver hilo operativo completo <Workflow size={14} />
+            </Link>
+          )}
+        </div>
 
         <section className={styles.hero}>
           <div>
