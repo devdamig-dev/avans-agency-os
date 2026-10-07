@@ -10,9 +10,9 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
-  title: "Avans Intelligence Core",
-  description: "Centro operativo inteligente de Avans: procesos, decisiones, automatización y aprendizaje con control humano.",
-  applicationName: "Avans Intelligence Core",
+  title: "Avans OS",
+  description: "Sistema operativo interno de Avans para centralizar clientes, operaciones, ventas, finanzas, RRHH y gerencia.",
+  applicationName: "Avans OS",
 };
 
 export default function V2Layout({ children }: { children: React.ReactNode }) {
