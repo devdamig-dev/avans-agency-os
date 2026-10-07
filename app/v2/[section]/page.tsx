@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
+import { avansClients, type AgencyModuleSlug } from "../agency-client-data";
+import { architectureAreas } from "../architecture-data";
 import { AgencyClientGate } from "../components/agency-client-gate";
+import { ArchitectureHub } from "../components/architecture-hub";
 import { ModuleDepth } from "../components/module-depth";
 import { V2Chrome } from "../components/v2-chrome";
 import { v2NavItems } from "../navigation";
 import { getOperationalObjectForRow } from "../object-data";
 import { sectionData } from "../section-data";
-import { avansClients, type AgencyModuleSlug } from "../agency-client-data";
 import styles from "../v2.module.css";
 
 const clientScopedAgencyModules = new Set<AgencyModuleSlug>(["contenido", "campanas", "reportes"]);
@@ -25,9 +27,20 @@ export default async function V2SectionPage({
 }) {
   const { section } = await params;
   const navItem = v2NavItems.find((item) => item.slug === section);
-  const data = sectionData[section];
+  const architectureArea = architectureAreas[section];
 
-  if (!navItem || !data) notFound();
+  if (!navItem) notFound();
+
+  if (architectureArea) {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <ArchitectureHub area={architectureArea} />
+      </V2Chrome>
+    );
+  }
+
+  const data = sectionData[section];
+  if (!data) notFound();
 
   if (clientScopedAgencyModules.has(section as AgencyModuleSlug)) {
     return (
