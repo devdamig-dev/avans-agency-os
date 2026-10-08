@@ -5,7 +5,9 @@ import { avansClients, type AgencyModuleSlug } from "../agency-client-data";
 import { architectureAreas } from "../architecture-data";
 import { AgencyClientGate } from "../components/agency-client-gate";
 import { ArchitectureHub } from "../components/architecture-hub";
+import { ClientHub } from "../components/client-hub";
 import { ModuleDepth } from "../components/module-depth";
+import { OperationsHub } from "../components/operations-hub";
 import { V2Chrome } from "../components/v2-chrome";
 import { v2NavItems } from "../navigation";
 import { getOperationalObjectForRow } from "../object-data";
@@ -30,6 +32,22 @@ export default async function V2SectionPage({
   const architectureArea = architectureAreas[section];
 
   if (!navItem) notFound();
+
+  if (section === "clientes") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <ClientHub />
+      </V2Chrome>
+    );
+  }
+
+  if (section === "operaciones") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <OperationsHub />
+      </V2Chrome>
+    );
+  }
 
   if (architectureArea) {
     return (
