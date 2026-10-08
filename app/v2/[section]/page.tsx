@@ -4,10 +4,12 @@ import { notFound } from "next/navigation";
 import { avansClients, type AgencyModuleSlug } from "../agency-client-data";
 import { architectureAreas } from "../architecture-data";
 import { AgencyClientGate } from "../components/agency-client-gate";
+import { AuditHub } from "../components/audit-hub";
 import { ArchitectureHub } from "../components/architecture-hub";
 import { ClientHub } from "../components/client-hub";
 import { FinanceHub } from "../components/finance-hub";
 import { HrHub } from "../components/hr-hub";
+import { HealthHub } from "../components/health-hub";
 import { ManagementHub } from "../components/management-hub";
 import { ModuleDepth } from "../components/module-depth";
 import { OperationsHub } from "../components/operations-hub";
@@ -91,6 +93,22 @@ export default async function V2SectionPage({
     return (
       <V2Chrome active={section} title={navItem.label}>
         <SecurityHub />
+      </V2Chrome>
+    );
+  }
+
+  if (section === "auditoria") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <AuditHub />
+      </V2Chrome>
+    );
+  }
+
+  if (section === "salud-sistema") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <HealthHub />
       </V2Chrome>
     );
   }
