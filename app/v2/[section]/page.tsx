@@ -8,6 +8,7 @@ import { ArchitectureHub } from "../components/architecture-hub";
 import { ClientHub } from "../components/client-hub";
 import { ModuleDepth } from "../components/module-depth";
 import { OperationsHub } from "../components/operations-hub";
+import { SalesHub } from "../components/sales-hub";
 import { V2Chrome } from "../components/v2-chrome";
 import { v2NavItems } from "../navigation";
 import { getOperationalObjectForRow } from "../object-data";
@@ -45,6 +46,14 @@ export default async function V2SectionPage({
     return (
       <V2Chrome active={section} title={navItem.label}>
         <OperationsHub />
+      </V2Chrome>
+    );
+  }
+
+  if (section === "ventas") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <SalesHub />
       </V2Chrome>
     );
   }
