@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2, CircleAlert, FileText, Layers3 } from "lucide-react";
+import { ArrowLeft, ArrowRight, BarChart3, CheckCircle2, CircleAlert, FileText, Layers3 } from "lucide-react";
 import { notFound } from "next/navigation";
+import { getClientBenchmark } from "../../benchmark-data";
 import { clientDepthData, getClientDepth } from "../../client-depth-data";
 import { V2Chrome } from "../../components/v2-chrome";
 import styles from "./client-profile.module.css";
@@ -20,6 +21,7 @@ export default async function ClientProfilePage({ params }: { params: Promise<{ 
   const { client: clientSlug } = await params;
   const client = getClientDepth(clientSlug);
   if (!client) notFound();
+  const benchmark = getClientBenchmark(client.slug);
 
   return (
     <V2Chrome active="clientes" title={client.name}>
@@ -49,6 +51,7 @@ export default async function ClientProfilePage({ params }: { params: Promise<{ 
               <Link href={`/v2/clientes/${client.slug}/contenido`}>Contenido</Link>
               <Link href={`/v2/clientes/${client.slug}/campanas`}>Campañas</Link>
               <Link href={`/v2/clientes/${client.slug}/reportes`}>Reportes</Link>
+              <Link href={`/v2/clientes/${client.slug}/benchmark`}>Benchmark</Link>
             </div>
           </div>
         </section>
@@ -58,6 +61,7 @@ export default async function ClientProfilePage({ params }: { params: Promise<{ 
           <a href="#conocimiento">Conocimiento</a>
           <a href="#operacion">Operación</a>
           <a href="#acciones">Acciones y decisiones</a>
+          <a href="#benchmark">Benchmark y competencia</a>
           <a href="#documentos">Documentos</a>
           <a href="#comercial">Comercial y finanzas</a>
         </nav>
@@ -164,6 +168,30 @@ export default async function ClientProfilePage({ params }: { params: Promise<{ 
                 })}
               </div>
             </article>
+
+            {benchmark ? (
+              <article className={styles.panel} id="benchmark">
+                <div className={styles.panelHeader}>
+                  <div>
+                    <span className={styles.eyebrow}>BENCHMARK Y COMPETENCIA</span>
+                    <h2>Qué está cambiando alrededor de {client.name}</h2>
+                  </div>
+                  <BarChart3 size={22} aria-hidden="true" />
+                </div>
+                <div className={styles.sourceGrid}>
+                  {benchmark.signals.slice(0, 4).map((signal) => (
+                    <Link key={signal.id} href={`/v2/clientes/${client.slug}/benchmark`} className={styles.sourceCard}>
+                      <span>{signal.category} · impacto {signal.impact.toLowerCase()}</span>
+                      <strong>{signal.title}</strong>
+                      <small>{signal.competitor} · {signal.detectedAt}</small>
+                    </Link>
+                  ))}
+                </div>
+                <Link href={`/v2/clientes/${client.slug}/benchmark`} className={styles.backLink}>
+                  Abrir benchmark completo <ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              </article>
+            ) : null}
 
             <article className={styles.panel} id="documentos">
               <div className={styles.panelHeader}>
