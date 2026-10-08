@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, BookOpenCheck, CircleAlert, FolderKanban, Layers3 } from "lucide-react";
+import { ArrowRight, BookOpenCheck, CircleAlert } from "lucide-react";
+import { benchmarkData, benchmarkSignals } from "../benchmark-data";
 import { clientDepthData } from "../client-depth-data";
 import styles from "../depth.module.css";
 
@@ -13,6 +14,9 @@ export function ClientHub() {
   const contextAverage = average(clientDepthData.map((client) => client.context));
   const activeWorkstreams = clientDepthData.reduce((sum, client) => sum + client.activeWorkstreams, 0);
   const openActions = clientDepthData.reduce((sum, client) => sum + client.openActions, 0);
+  const newCompetitiveSignals = benchmarkSignals.filter((signal) => signal.status === "Nuevo").length;
+  const highImpactSignals = benchmarkSignals.filter((signal) => signal.impact === "Alto").length;
+  const monitoredCompetitors = benchmarkData.reduce((sum, item) => sum + item.monitoredCompetitors, 0);
   const coverage = [
     { label: "Negocio y objetivos", value: average(clientDepthData.map((client) => client.knowledge[0].completeness)) },
     { label: "Marca y comunicación", value: average(clientDepthData.map((client) => client.knowledge[1].completeness)) },
@@ -27,12 +31,12 @@ export function ClientHub() {
           <span className={styles.eyebrow}>ÁREA 01 · CLIENTE 360°</span>
           <h1>Todo lo que Avans sabe y hace para cada cliente.</h1>
           <p>
-            Contexto, servicios, proyectos, decisiones, reuniones, documentos, resultados y próximos pasos concentrados en una ficha única. La misma fuente de información alimenta al equipo, los reportes y las automatizaciones.
+            Contexto, servicios, proyectos, decisiones, reuniones, documentos, mercado, competencia, resultados y próximos pasos concentrados en una ficha única. La misma fuente de información alimenta al equipo, los reportes y las automatizaciones.
           </p>
         </div>
         <div className={styles.heroAside}>
           <span>PRINCIPIO DE LA SECCIÓN</span>
-          <strong>Una cuenta no es una carpeta ni un tablero: es contexto, operación e historial conectados.</strong>
+          <strong>Una cuenta no es una carpeta ni un tablero: es contexto, operación, mercado e historial conectados.</strong>
           <small>Datos simulados para validar la arquitectura funcional del demo.</small>
         </div>
       </section>
@@ -146,6 +150,11 @@ export function ClientHub() {
                   <strong>3</strong>
                   <small>Propuesta, contenido y aprendizaje esperan decisión humana antes de avanzar.</small>
                 </article>
+                <article className={styles.signalCard}>
+                  <span>SEÑALES COMPETITIVAS</span>
+                  <strong>{newCompetitiveSignals}</strong>
+                  <small>{highImpactSignals} de impacto alto sobre {monitoredCompetitors} perfiles monitoreados.</small>
+                </article>
               </div>
             </section>
           </aside>
@@ -170,6 +179,30 @@ export function ClientHub() {
       </section>
 
       <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <span className={styles.eyebrow}>MERCADO Y COMPETENCIA</span>
+            <h2>El contexto externo también forma parte de Cliente 360°</h2>
+          </div>
+          <p>El benchmark se registra por cuenta y conserva perfiles, dimensiones, señales, oportunidades y fuentes antes de alimentar decisiones.</p>
+        </div>
+        <div className={styles.capabilityGrid}>
+          <Link href="/v2/benchmark" className={styles.capabilityCard}>
+            <span>Benchmark portfolio <ArrowRight size={17} /></span>
+            <p>Comparar cuentas, perfiles monitoreados, señales nuevas y riesgos de mercado.</p>
+          </Link>
+          <Link href="/v2/benchmark#senales" className={styles.capabilityCard}>
+            <span>Monitoreo competitivo <ArrowRight size={17} /></span>
+            <p>Capturar cambios de oferta, comunicación, producto, experiencia y performance.</p>
+          </Link>
+          <Link href="/v2/clientes/epsa/benchmark#oportunidades" className={styles.capabilityCard}>
+            <span>Oportunidades <ArrowRight size={17} /></span>
+            <p>Convertir señales validadas en hipótesis, responsables, acciones y aprendizaje.</p>
+          </Link>
+        </div>
+      </section>
+
+      <section className={styles.section}>
         <div className={styles.darkPanel}>
           <span className={styles.eyebrowLight}>NÚCLEO TRANSVERSAL</span>
           <h2>Clientes conecta todas las áreas del sistema.</h2>
@@ -177,7 +210,7 @@ export function ClientHub() {
           <div className={styles.darkList}>
             <div><span>Ventas</span><strong>Lead → Discovery → Propuesta → Alta</strong></div>
             <div><span>Operaciones</span><strong>Procesos → Proyectos → Entregables → Aprobaciones</strong></div>
-            <div><span>Gerencia</span><strong>Salud → Riesgo → Resultados → Oportunidades</strong></div>
+            <div><span>Gerencia</span><strong>Salud → Riesgo → Benchmark → Oportunidades</strong></div>
           </div>
         </div>
       </section>
