@@ -7,6 +7,7 @@ import { AgencyClientGate } from "../components/agency-client-gate";
 import { ArchitectureHub } from "../components/architecture-hub";
 import { ClientHub } from "../components/client-hub";
 import { FinanceHub } from "../components/finance-hub";
+import { HrHub } from "../components/hr-hub";
 import { ManagementHub } from "../components/management-hub";
 import { ModuleDepth } from "../components/module-depth";
 import { OperationsHub } from "../components/operations-hub";
@@ -64,6 +65,14 @@ export default async function V2SectionPage({
     return (
       <V2Chrome active={section} title={navItem.label}>
         <FinanceHub />
+      </V2Chrome>
+    );
+  }
+
+  if (section === "rrhh") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <HrHub />
       </V2Chrome>
     );
   }
