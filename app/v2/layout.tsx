@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./design-tokens.css";
 import "./theme-overrides.css";
+import "./depth-theme.css";
 
 const figtree = Figtree({
   subsets: ["latin"],
