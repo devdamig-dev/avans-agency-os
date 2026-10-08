@@ -3,7 +3,7 @@ import { V2Chrome } from "../components/v2-chrome";
 
 export default function BenchmarkPage() {
   return (
-    <V2Chrome active="gerencia" title="Benchmark y competencia">
+    <V2Chrome active="clientes" title="Benchmark y competencia">
       <BenchmarkHub />
     </V2Chrome>
   );
