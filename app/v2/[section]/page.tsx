@@ -12,6 +12,8 @@ import { ManagementHub } from "../components/management-hub";
 import { ModuleDepth } from "../components/module-depth";
 import { OperationsHub } from "../components/operations-hub";
 import { SalesHub } from "../components/sales-hub";
+import { SecurityHub } from "../components/security-hub";
+import { UsersAccessHub } from "../components/users-access-hub";
 import { V2Chrome } from "../components/v2-chrome";
 import { v2NavItems } from "../navigation";
 import { getOperationalObjectForRow } from "../object-data";
@@ -73,6 +75,22 @@ export default async function V2SectionPage({
     return (
       <V2Chrome active={section} title={navItem.label}>
         <HrHub />
+      </V2Chrome>
+    );
+  }
+
+  if (section === "usuarios") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <UsersAccessHub />
+      </V2Chrome>
+    );
+  }
+
+  if (section === "seguridad") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <SecurityHub />
       </V2Chrome>
     );
   }
