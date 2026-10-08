@@ -6,6 +6,7 @@ import { architectureAreas } from "../architecture-data";
 import { AgencyClientGate } from "../components/agency-client-gate";
 import { ArchitectureHub } from "../components/architecture-hub";
 import { ClientHub } from "../components/client-hub";
+import { ManagementHub } from "../components/management-hub";
 import { ModuleDepth } from "../components/module-depth";
 import { OperationsHub } from "../components/operations-hub";
 import { SalesHub } from "../components/sales-hub";
@@ -54,6 +55,14 @@ export default async function V2SectionPage({
     return (
       <V2Chrome active={section} title={navItem.label}>
         <SalesHub />
+      </V2Chrome>
+    );
+  }
+
+  if (section === "gerencia") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <ManagementHub />
       </V2Chrome>
     );
   }
