@@ -1,27 +1,20 @@
 import Link from "next/link";
 import {
-  Bot,
+  Activity,
   BrainCircuit,
   BriefcaseBusiness,
   ChartNoAxesCombined,
-  ClipboardCheck,
   FileChartColumn,
-  FileText,
-  FolderKanban,
   Gauge,
   Inbox,
-  Lightbulb,
-  Megaphone,
-  MessagesSquare,
   Network,
-  Search,
   Settings2,
   ShieldCheck,
   Users,
   Workflow,
 } from "lucide-react";
 import { AvansLogo } from "../../components/avans-logo";
-import { v2NavGroups } from "../navigation";
+import { v2NavGroups, v2ParentBySlug } from "../navigation";
 import { ThemeToggle } from "./theme-toggle";
 import styles from "../v2.module.css";
 
@@ -29,23 +22,17 @@ const iconMap: Record<string, React.ElementType> = {
   "command-center": Gauge,
   inbox: Inbox,
   clientes: Users,
-  procesos: Network,
-  proyectos: FolderKanban,
-  reuniones: MessagesSquare,
-  insights: ChartNoAxesCombined,
-  oportunidades: BriefcaseBusiness,
-  aprendizajes: Lightbulb,
-  leads: Search,
-  discovery: ClipboardCheck,
-  propuestas: FileText,
-  contenido: FileText,
-  campanas: Megaphone,
-  reportes: FileChartColumn,
+  operaciones: Network,
+  ventas: BriefcaseBusiness,
+  finanzas: FileChartColumn,
+  rrhh: Users,
+  gerencia: ChartNoAxesCombined,
+  usuarios: Settings2,
   integraciones: Settings2,
-  agentes: Bot,
-  workflows: Workflow,
-  guardrails: ShieldCheck,
+  automatizaciones: Workflow,
+  seguridad: ShieldCheck,
   auditoria: BrainCircuit,
+  "salud-sistema": Activity,
 };
 
 export function V2Chrome({
@@ -57,6 +44,8 @@ export function V2Chrome({
   title: string;
   children: React.ReactNode;
 }) {
+  const activeNav = v2ParentBySlug[active] ?? active;
+
   return (
     <main className={`${styles.shell} avans-v2-shell`}>
       <aside className={`${styles.sidebar} avans-v2-sidebar`}>
@@ -64,14 +53,14 @@ export function V2Chrome({
           <Link href="/v2" aria-label="Ir al Command Center">
             <AvansLogo variant="compact" />
           </Link>
-          <span className={styles.productName}>Intelligence Core</span>
+          <span className={styles.productName}>OS</span>
         </div>
 
         <div className={styles.workspace}>
           <span className={styles.mark}>↗</span>
           <div>
             <strong>Avans Agency</strong>
-            <small>Workspace · V2</small>
+            <small>Sistema operativo interno</small>
           </div>
         </div>
 
@@ -85,7 +74,7 @@ export function V2Chrome({
                   <Link
                     key={item.slug}
                     href={item.href}
-                    className={active === item.slug ? styles.activeNav : ""}
+                    className={activeNav === item.slug ? styles.activeNav : ""}
                   >
                     {Icon ? <Icon size={15} /> : <span className={styles.dot} />}
                     <span>{item.label}</span>
@@ -99,8 +88,8 @@ export function V2Chrome({
         <div className={styles.guardrail}>
           <ShieldCheck size={17} />
           <div>
-            <strong>Autonomía controlada</strong>
-            <small>Las acciones sensibles requieren validación.</small>
+            <strong>Acceso corporativo</strong>
+            <small>Google Workspace · @avans.agency</small>
           </div>
         </div>
       </aside>
@@ -108,12 +97,14 @@ export function V2Chrome({
       <section className={`${styles.workspaceMain} avans-v2-main`}>
         <header className={`${styles.topbar} avans-v2-topbar`}>
           <div>
-            <span>Avans /</span>
+            <span>Avans OS /</span>
             <strong>{title}</strong>
           </div>
           <div className={styles.topStatus}>
             <span className={styles.liveDot} />
-            Intelligence Loop activo
+            <Link href="/v2/estado-producto" title="Ver estado real del producto">
+              Preview · estado del producto
+            </Link>
             <ThemeToggle />
           </div>
         </header>
