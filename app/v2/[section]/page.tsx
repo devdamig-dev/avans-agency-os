@@ -9,6 +9,7 @@ import { ArchitectureHub } from "../components/architecture-hub";
 import { ClientHub } from "../components/client-hub";
 import { FinanceHub } from "../components/finance-hub";
 import { HrHub } from "../components/hr-hub";
+import { InboxHub } from "../components/inbox-hub";
 import { HealthHub } from "../components/health-hub";
 import { IntegrationsHub } from "../components/integrations-hub";
 import { AutomationHub } from "../components/automation-hub";
@@ -42,6 +43,14 @@ export default async function V2SectionPage({
   const architectureArea = architectureAreas[section];
 
   if (!navItem) notFound();
+
+  if (section === "inbox") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <InboxHub />
+      </V2Chrome>
+    );
+  }
 
   if (section === "clientes") {
     return (
