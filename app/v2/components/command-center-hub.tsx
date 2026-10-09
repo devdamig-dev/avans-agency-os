@@ -13,6 +13,7 @@ const areas=[
 ];
 
 const system=[
+ {label:"Estado del producto",state:"MVP en construcción",detail:"Ver qué funciona, qué es demo y qué falta conectar",href:"/v2/estado-producto"},
  {label:"Integraciones",state:"Parcial",detail:"Health checks por conexión pendientes",href:"/v2/integraciones"},
  {label:"Automatizaciones e IA",state:"Operativo demo",detail:"Runs y guardrails modelados",href:"/v2/automatizaciones"},
  {label:"Seguridad",state:"En evolución",detail:"RLS y Google Auth pendientes",href:"/v2/seguridad"},

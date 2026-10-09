@@ -16,6 +16,7 @@ import { AutomationHub } from "../components/automation-hub";
 import { ManagementHub } from "../components/management-hub";
 import { ModuleDepth } from "../components/module-depth";
 import { OperationsHub } from "../components/operations-hub";
+import { ProductReadinessHub } from "../components/product-readiness-hub";
 import { SalesHub } from "../components/sales-hub";
 import { SecurityHub } from "../components/security-hub";
 import { UsersAccessHub } from "../components/users-access-hub";
@@ -124,6 +125,14 @@ export default async function V2SectionPage({
     );
   }
 
+  if (section === "estado-producto") {
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <ProductReadinessHub />
+      </V2Chrome>
+    );
+  }
+
   if (section === "integraciones") {
     return (
       <V2Chrome active={section} title={navItem.label}>
@@ -192,10 +201,10 @@ export default async function V2SectionPage({
             <h1>{data.title}</h1>
             <p>{data.description}</p>
           </div>
-          <button className={styles.primaryAction}>
-            {data.action}
-            <ArrowRight size={15} />
-          </button>
+          <div className={styles.demoAction}>
+            <strong>{data.action}</strong>
+            <small>Simulado · requiere backend</small>
+          </div>
         </section>
 
         <section className={styles.moduleStats}>

@@ -102,7 +102,9 @@ export function V2Chrome({
           </div>
           <div className={styles.topStatus}>
             <span className={styles.liveDot} />
-            Arquitectura funcional · demo
+            <Link href="/v2/estado-producto" title="Ver estado real del producto">
+              Preview · estado del producto
+            </Link>
             <ThemeToggle />
           </div>
         </header>

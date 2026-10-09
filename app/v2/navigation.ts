@@ -62,6 +62,7 @@ export const v2CapabilityItems: V2NavItem[] = [
   { label: "Agentes", slug: "agentes", href: "/v2/agentes" },
   { label: "Workflows", slug: "workflows", href: "/v2/workflows" },
   { label: "Guardrails", slug: "guardrails", href: "/v2/guardrails" },
+  { label: "Estado del producto", slug: "estado-producto", href: "/v2/estado-producto" },
 ];
 
 const visibleItems = v2NavGroups.flatMap((group) => group.items);
@@ -86,4 +87,5 @@ export const v2ParentBySlug: Record<string, string> = {
   agentes: "automatizaciones",
   workflows: "automatizaciones",
   guardrails: "seguridad",
+  "estado-producto": "salud-sistema",
 };
