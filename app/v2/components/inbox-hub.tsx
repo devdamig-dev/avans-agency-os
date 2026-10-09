@@ -5,8 +5,8 @@ import styles from "../command-inbox-hub.module.css";
 
 const groups=[
  {label:"Crítica / alta",value:"3",detail:"Resolver primero"},
- {label:"Aprobaciones",value:"2",detail:"Esperan decisión"},
- {label:"Bloqueos",value:"2",detail:"Detienen procesos"},
+ {label:"Aprobaciones",value:"1",detail:"Visible en la cola demo"},
+ {label:"Bloqueos",value:"1",detail:"Visible en la cola demo"},
  {label:"Aprendizajes",value:"1",detail:"Puede esperar"},
 ];
 

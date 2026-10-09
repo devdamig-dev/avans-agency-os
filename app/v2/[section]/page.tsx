@@ -20,7 +20,7 @@ import { SalesHub } from "../components/sales-hub";
 import { SecurityHub } from "../components/security-hub";
 import { UsersAccessHub } from "../components/users-access-hub";
 import { V2Chrome } from "../components/v2-chrome";
-import { v2NavItems } from "../navigation";
+import { v2NavItems, v2ParentBySlug } from "../navigation";
 import { getOperationalObjectForRow } from "../object-data";
 import { sectionData } from "../section-data";
 import styles from "../v2.module.css";
@@ -159,6 +159,9 @@ export default async function V2SectionPage({
   const data = sectionData[section];
   if (!data) notFound();
 
+  const parentSlug = v2ParentBySlug[section];
+  const parentNavItem = parentSlug ? v2NavItems.find((item) => item.slug === parentSlug) : null;
+
   if (clientScopedAgencyModules.has(section as AgencyModuleSlug)) {
     return (
       <V2Chrome active={section} title={navItem.label}>
@@ -170,6 +173,19 @@ export default async function V2SectionPage({
   return (
     <V2Chrome active={section} title={navItem.label}>
       <div className={styles.content}>
+        {parentNavItem ? (
+          <div className={styles.capabilityContext}>
+            <div>
+              <span>CAPACIDAD INTERNA DE</span>
+              <strong>{parentNavItem.label}</strong>
+              <span>· Se conserva como profundidad operativa, no como área principal.</span>
+            </div>
+            <Link href={parentNavItem.href}>
+              Volver a {parentNavItem.label}
+              <ArrowRight size={13} />
+            </Link>
+          </div>
+        ) : null}
         <section className={styles.moduleHero}>
           <div>
             <span className={styles.eyebrow}>{data.eyebrow}</span>
