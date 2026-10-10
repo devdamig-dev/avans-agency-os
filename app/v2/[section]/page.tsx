@@ -5,6 +5,8 @@ import { avansClients, type AgencyModuleSlug } from "../agency-client-data";
 import { architectureAreas } from "../architecture-data";
 import { AgencyClientGate } from "../components/agency-client-gate";
 import { AuditHub } from "../components/audit-hub";
+import { AiUsageHub } from "../components/ai-usage-hub";
+import { getAiUsageSnapshot } from "../ai-usage-server";
 import { ArchitectureHub } from "../components/architecture-hub";
 import { ClientHub } from "../components/client-hub";
 import { FinanceHub } from "../components/finance-hub";
@@ -145,6 +147,15 @@ export default async function V2SectionPage({
     return (
       <V2Chrome active={section} title={navItem.label}>
         <AutomationHub />
+      </V2Chrome>
+    );
+  }
+
+  if (section === "consumo-ia") {
+    const snapshot = await getAiUsageSnapshot();
+    return (
+      <V2Chrome active={section} title={navItem.label}>
+        <AiUsageHub snapshot={snapshot} />
       </V2Chrome>
     );
   }
