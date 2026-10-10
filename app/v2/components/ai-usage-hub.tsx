@@ -44,12 +44,14 @@ export function AiUsageHub({ snapshot }: { snapshot: AiUsageSnapshot }) {
   const inputTokens = sum(filtered, "input_tokens");
   const outputTokens = sum(filtered, "output_tokens");
   const minutesSaved = sum(filtered, "minutes_saved");
-  const estimated = filtered.filter((row) => row.cost_source === "estimated").reduce((value, row) => value + Number(row.cost_usd), 0);
+  const unknownCosts = filtered.filter((row) => row.cost_usd === null).length;
+  const estimated = filtered.filter((row) => row.cost_source === "estimated" && row.cost_usd !== null).reduce((value, row) => value + Number(row.cost_usd), 0);
   const month = new Date().toISOString().slice(0, 7);
   const currentMonth = snapshot.events.filter((item) => item.occurred_at.startsWith(month));
   const monthSpend = sum(currentMonth, "cost_usd");
   const monthlyBudget = snapshot.budgets.reduce((value, row) => value + Number(row.monthly_limit_usd), 0);
   const budgetShare = percent(monthSpend, monthlyBudget);
+  const incompleteMonth = currentMonth.some((item) => item.cost_usd === null);
   const focus = activities.filter((item) => item.generated >= 2 && percent(item.approved, item.generated) < 55);
   const available = snapshot.mode === "live" || snapshot.mode === "demo";
 
@@ -96,9 +98,9 @@ export function AiUsageHub({ snapshot }: { snapshot: AiUsageSnapshot }) {
 
           <section className={styles.metrics} aria-label="Indicadores de consumo de IA">
             {[
-              { icon: Coins, title: "Inversión IA", value: money(totalCost), detail: `${filtered.length} registros en el período` },
+              { icon: Coins, title: "Inversión IA conocida", value: money(totalCost), detail: `${filtered.length} registros · ${unknownCosts} sin importe` },
               { icon: Gauge, title: "Resultados aprobados", value: num(approved), detail: `${percent(approved, generated)}% de ${num(generated)} resultados generados` },
-              { icon: Layers3, title: "Costo por resultado aprobado", value: approved ? money(totalCost / approved) : "—", detail: "Incluye intentos y resultados no aprobados" },
+              { icon: Layers3, title: "Costo por resultado aprobado", value: approved && !unknownCosts ? money(totalCost / approved) : "—", detail: unknownCosts ? "Faltan importes para calcularlo" : "Incluye intentos y resultados no aprobados" },
               { icon: BarChart3, title: "Iteraciones", value: num(attempts), detail: generated ? `${(attempts / generated).toFixed(1)} intentos por resultado` : "Sin resultados" },
               { icon: Sparkles, title: "Tokens (texto)", value: num(inputTokens + outputTokens), detail: `${num(inputTokens)} entrada · ${num(outputTokens)} salida` },
               { icon: TrendingDown, title: "Tiempo declarado como ahorrado", value: minutesSaved ? `${(minutesSaved / 60).toFixed(1)} h` : "—", detail: "Dato de resultados; no equivale a ROI validado" },
@@ -111,7 +113,7 @@ export function AiUsageHub({ snapshot }: { snapshot: AiUsageSnapshot }) {
             ))}
           </section>
 
-          <div className={styles.statusStrip}><span>{snapshot.mode === "demo" ? "DATOS ILUSTRATIVOS · NO SON CONSUMOS REALES" : "DATOS INTERNOS · ACCESO SEGÚN ROL"}</span><span>{estimated ? `${money(estimated)} de costos estimados en este filtro` : "Sin costos estimados en el filtro"}</span></div>
+          <div className={styles.statusStrip}><span>{snapshot.mode === "demo" ? "DATOS ILUSTRATIVOS · NO SON CONSUMOS REALES" : unknownCosts ? `${unknownCosts} COSTOS SIN INFORMAR · TOTALES PARCIALES` : "DATOS INTERNOS · ACCESO SEGÚN ROL"}</span><span>{estimated ? `${money(estimated)} de costos estimados en este filtro` : "Sin costos estimados en el filtro"}</span></div>
 
           <section className={styles.split}>
             <article className={styles.panel}>
@@ -132,7 +134,7 @@ export function AiUsageHub({ snapshot }: { snapshot: AiUsageSnapshot }) {
                 <>
                   <div className={styles.budgetValues}><strong>{money(monthSpend)}</strong><span>de {money(monthlyBudget)}</span></div>
                   <div className={styles.budgetTrack}><i style={{ width: `${Math.min(100, budgetShare)}%` }}/></div>
-                  <div className={styles.budgetFoot}><span>{budgetShare}% utilizado</span><strong>{budgetShare >= 100 ? "Límite superado" : budgetShare >= 80 ? "Revisar gasto" : "Dentro del presupuesto"}</strong></div>
+                  <div className={styles.budgetFoot}><span>{budgetShare}% mínimo conocido</span><strong>{incompleteMonth ? "Cobertura incompleta" : budgetShare >= 100 ? "Límite superado" : budgetShare >= 80 ? "Revisar gasto" : "Dentro del presupuesto"}</strong></div>
                   <div className={styles.budgetAreas}>{snapshot.budgets.map((row) => {
                     const used = currentMonth.filter((item) => item.area === row.area).reduce((n, item) => n + Number(item.cost_usd), 0);
                     return <div key={row.area}><span>{row.area}</span><strong>{money(used)} / {money(row.monthly_limit_usd)}</strong></div>;
@@ -146,7 +148,7 @@ export function AiUsageHub({ snapshot }: { snapshot: AiUsageSnapshot }) {
             <div className={styles.sectionHeader}><div><span className={styles.eyebrow}>03 / PRODUCTIVIDAD</span><h2>Del consumo al resultado útil</h2></div><p>La tasa de aprobación y el costo por resultado permiten evaluar retrabajo, no medir desempeño individual.</p></div>
             <div className={styles.tableScroll}><table className={styles.table}><thead><tr><th>Actividad</th><th>Inversión</th><th>Generados</th><th>Aprobados</th><th>Eficiencia</th><th>Costo / aprobado</th></tr></thead><tbody>
               {activities.map((row) => (
-                <tr key={row.label}><td><strong>{row.label}</strong><small>{row.attempts} intentos</small></td><td>{money(row.cost)}</td><td>{num(row.generated)}</td><td>{num(row.approved)}</td><td><span className={percent(row.approved,row.generated) < 55 ? styles.low : styles.good}>{percent(row.approved,row.generated)}%</span></td><td>{row.approved ? money(row.cost / row.approved) : "—"}</td></tr>
+                <tr key={row.label}><td><strong>{row.label}</strong><small>{row.attempts} intentos</small></td><td>{money(row.cost)}</td><td>{num(row.generated)}</td><td>{num(row.approved)}</td><td><span className={percent(row.approved,row.generated) < 55 ? styles.low : styles.good}>{percent(row.approved,row.generated)}%</span></td><td>{row.approved && !filtered.some((item) => item.activity === row.label && item.cost_usd === null) ? money(row.cost / row.approved) : "—"}</td></tr>
               ))}
               {!activities.length && <tr><td colSpan={6}>Sin actividad en el período.</td></tr>}
             </tbody></table></div>
