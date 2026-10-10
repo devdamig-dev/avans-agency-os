@@ -12,7 +12,7 @@ export type AiUsageEvent = {
   units_generated: number;
   units_approved: number;
   attempts: number;
-  cost_usd: number;
+  cost_usd: number | null;
   minutes_saved: number;
   cost_source: "provider" | "estimated";
 };
