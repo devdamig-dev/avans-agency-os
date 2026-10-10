@@ -264,6 +264,16 @@ export function ManagementHub() {
 
   const executiveMetrics = [
     {
+      label: "Eficiencia y consumo de IA",
+      value: "Nuevo",
+      suffix: "módulo",
+      detail: "Analítica del gasto por área, modelo, actividad y resultados aprobados",
+      icon: BarChart3,
+      href: "/v2/consumo-ia",
+      state: "Vista demo",
+      tone: "neutral" as const,
+    },
+    {
       label: "Salud del portfolio",
       value: `${portfolioHealth}`,
       suffix: "/100",
