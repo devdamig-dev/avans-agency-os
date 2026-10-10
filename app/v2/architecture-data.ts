@@ -167,6 +167,7 @@ export const architectureAreas: Record<string, ArchitectureArea> = {
       { label: "Indicadores", value: "24", detail: "Operativos y comerciales" },
     ],
     modules: [
+      { title: "Consumo y eficiencia de IA", meta: "Control de inversión", description: "Tokens, costos, presupuestos, proveedores, iteraciones y resultados aprobados por área.", href: "/v2/consumo-ia", status: "En diseño" },
       { title: "Indicadores", meta: "KPIs", description: "Operación, ventas, finanzas, clientes y equipo en una única vista.", href: "/v2/reportes", status: "Disponible" },
       { title: "Insights", meta: "Análisis", description: "Señales explicables con fuente, contexto y recomendación.", href: "/v2/insights", status: "Disponible" },
       { title: "Aprendizajes", meta: "Memoria", description: "Patrones, feedback y resultados convertidos en conocimiento validado.", href: "/v2/aprendizajes", status: "Disponible" },
